@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RESERVATION</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="toast" class="toast"></div>
+    <section id="section-header">
+  <header class="site-header">
+    <div class="logo">L’Hôtel</div>
+    <nav class="main-nav">
+      <a href="#" class="nav-item">ACCUEIL</a>
+      <a href="#" class="nav-item">CHAMBRES</a>
+      <a href="#" class="nav-item">SERVICES</a>
+      <a href="#" class="nav-item">ÉVÉNEMENTS</a>
+      <a href="#" class="nav-item">GALERIE</a>
+      <a href="#" class="nav-item">CONTACT</a>
+    </nav>
+  </header>
+</section>
+
+<section id="section-hero">
+  <div class="hero-background">
+    <img
+      src="ChatGPT Image 2 mars 2026, 13_51_57.png"
+      alt="Hero Background"
+      class="hero-img"
+    />
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="hero-content">
+    <h2 class="hero-subtitle">RÉSERVATION</h2>
+    ‎ 
+    ‎ 
+    ‎ 
+    <h1 class="hero-title">RÉSERVEZ VOTRE SÉJOUR D’EXCEPTION</h1>
+    <p class="hero-desc">Une expérience luxueuse vous attend dès maintenant</p>
+  </div>
+</section>
+
+<section id="section-booking-bar">
+  <div class="booking-bar-container">
+    <!-- Arrival -->
+    <div class="booking-item">
+      <div class="booking-icon">
+        <img
+          src="calendrier.png"
+          alt="Calendar"
+        />
+      </div>
+      <div class="booking-details">
+        <span class="booking-label">ARRIVEE</span>
+        <span class="booking-value" id="arrival-date">Sélectionner</span>
+      </div>
+    </div>
+    <div class="divider"></div>
+
+    <!-- Departure -->
+    <div class="booking-item">
+      <div class="booking-icon">
+        <img
+          src="calendrier.png"
+          alt="Calendar"
+        />
+      </div>
+      <div class="booking-details">
+        <span class="booking-label">DEPART</span>
+        <span class="booking-value" id="departure-date">Sélectionner</span>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Travelers -->
+    <div class="booking-item traveler-selector">
+
+  <div class="booking-icon">
+    <img src="utilisateur.png" alt="User"/>
+  </div>
+
+  <div class="booking-details">
+    <span class="booking-label">VOYAGEUR</span>
+    <span id="traveler-display" class="booking-value">
+      1 Adultes, 0 Enfants -12 ans
+    </span>
+  </div>
+
+  <img src="fleche-vers-le-bas.png" class="dropdown-arrow"/>
+
+  <div id="traveler-box" class="traveler-box">
+    
+    <div class="traveler-row">
+      <span>Adultes</span>
+      <div class="traveler-controls">
+        <button id="adult-minus">▼</button>
+        <span id="adult-count">1</span>
+        <button id="adult-plus">▲</button>
+      </div>
+    </div>
+
+    <div class="traveler-row">
+      <span>Enfants -12 ans</span>
+      <div class="traveler-controls">
+        <button id="child-minus">▼</button>
+        <span id="child-count">0</span>
+        <button id="child-plus">▲</button>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+    <!-- Button -->
+    <button class="booking-btn" id="booking-confirm">CONFIRMER</button>
+  </div>
+</section>
+
+<section id="section-reservation-form">
+  <div class="form-container">
+    <!-- Left Column: Form -->
+    <div class="form-column">
+      <!-- Name Group -->
+      <div class="input-group-row">
+        <div class="input-wrapper">
+          <label class="input-label">Nom et prénom :</label>
+          <div class="row-inputs">
+                  <input id="nom" type="text" class="form-input" placeholder="Nom" disabled>
+                  <input id="prenom" type="text" class="form-input" placeholder="Prénom" disabled>
+          </div>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="input-wrapper">
+        <label class="input-label">Adresse e-mail :</label>
+        <input id="email" type="email" class="form-input full-width" placeholder="hotel@gmail.com" disabled>
+      </div>
+
+      <!-- Phone -->
+      <div class="input-wrapper">
+        <label class="input-label">Numéro de téléphone :</label>
+        <input id="phone" type="tel" class="form-input full-width" placeholder="+xxx xxxxxxxx" disabled>
+      </div>
+
+      <!-- Room Type -->
+      <div class="input-wrapper">
+        <label class="input-label">Type de chambre :</label>
+        <div class="select-wrapper">
+          <select id="room" class="form-input full-width" disabled>
+            <option disabled selected>Type de chambre</option>
+            <option>Chambre Classique</option>
+            <option>Chambre Deluxe</option>
+            <option>Chambre Junior</option>
+            <option>Chambre Familiale</option>
+            <option>Suite Prestige</option>
+            <option>Suite Executive</option>
+          </select>
+          <img src="fleche-vers-le-bas.png" class="select-arrow" alt="arrow"/>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Summary Card -->
+    <div class="summary-column">
+      <div class="summary-card">
+        <h3 class="summary-title">Récapitulatif de votre réservation</h3>
+        <span class="summary-room">-</span>
+
+        <table class="summary-grid">
+            <tr>
+                <td class="s-label">Date d'arrivée</td>
+                <td class="s-value" id="recap-arrival"></td>
+            </tr>
+            <tr>
+                <td class="s-label">Date de départ</td>
+                <td class="s-value" id="recap-departure"></td>
+            </tr>
+            <tr>
+                <td class="s-label">Personnes</td>
+                <td class="s-value"></td>
+            </tr>
+            <tr>
+                <td class="s-label">Contact</td>
+                <td class="s-value"></td>
+            </tr>
+            <tr>
+              <td class="s-label">Nuits</td>
+              <td class="s-value" id="recap-nights"></td>
+            </tr>
+            <tr>
+              <td class="s-label">Prix total</td>
+              <td class="s-value" id="recap-price"></td>
+            </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="confirm-action">
+    <button id="final-confirm" class="btn-confirm-final">
+      CONFIRMER VOTRE RESERVATION
+    </button>
+  </div>
+</section>
+
+<section id="section-footer">
+  <div class="footer-bg-container">
+    <img src="footer.png" class="footer-bg-svg" alt="Footer Background"/>
+  </div>
+
+  <div class="footer-content">
+    <div class="footer-header">
+      <h2 class="footer-logo">L’Hôtel</h2>
+      <p class="footer-quote">
+        “L’excellence hôtelière où confort, prestige et raffinement se
+        rencontrent.”
+      </p>
+      <div class="footer-divider-top"></div>
+    </div>
+
+    <div class="footer-columns">
+      <!-- Reception -->
+      <div class="f-col">
+        <h4>Réception</h4>
+        <p>24h/24, 7j/7</p>
+        <p>Check-in: 15h00</p>
+        <p>Check-out: 11h00</p>
+      </div>
+
+      <!-- Discover -->
+      <div class="f-col">
+        <h4>Découvrir</h4>
+        <p>Nos chambres</p>
+        <p>Évènements</p>
+        <p>Services</p>
+      </div>
+
+      <!-- Info -->
+      <div class="f-col">
+        <h4>Informations</h4>
+        <p>Contact</p>
+        <p>Galerie</p>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="f-col newsletter-col">
+        <h4>Rester en contact</h4>
+        <p>Laissez-nous votre Email pour recevoir toutes nouvelles offres</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Votre adresse mail" style="border-color: var(--color-warm-beige); color: var(--color-warm-beige); " />
+          <button>Confirmer</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-divider-bottom"></div>
+
+    <div class="footer-bottom">
+      <div class="contact-info">
+        <div class="c-item">
+          <img
+            src="${ASSET_PATH}/676d3225fa47bc6147e28a3971f29742463663fa.png"
+            alt="pin"
+          />
+          <span>258 Elisabeth Ava, CA, 90025</span>
+        </div>
+        <div class="c-item">
+          <img
+            src="${ASSET_PATH}/b1d009cc5b01cf845d93f78ec2e2756e93b5ea90.png"
+            alt="phone"
+          />
+          <span>+569 2316 2156</span>
+        </div>
+        <div class="c-item">
+          <img
+            src="${ASSET_PATH}/17314245336b2ec65a592349dcca0d95f310c07a.png"
+            alt="mail"
+          />
+          <span>hotel@gmail.com</span>
+        </div>
+      </div>
+
+      <div class="social-links">
+        <span>Suivez-nous</span>
+        <div class="social-icons">
+          <img
+            src="${ASSET_PATH}/102769f4ae7359c3326f902ff233807833ecbde7.png"
+            alt="Facebook"
+          />
+          <img
+            src="${ASSET_PATH}/2a72703bc8f52bacffd7e3b011d870afe814fc06.png"
+            alt="Twitter"
+          />
+          <img
+            src="${ASSET_PATH}/bc1e5428b76e4198d9f71a92210889a778542b86.png"
+            alt="LinkedIn"
+          />
+          <img
+            src="${ASSET_PATH}/7e58afb5b981ec10e08aa9620b0fc8a0337b0fa4.png"
+            alt="Instagram"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Inputs cachés pour stocker les dates -->
+<input type="hidden" id="arrival-input">
+<input type="hidden" id="departure-input">
+
+<!-- Calendrier custom -->
+<div id="calendar-container" class="hidden">
+  <div class="calendar">
+    <div class="calendar-header">
+      <button id="prev-month">&lt;</button>
+      <span id="month-year"></span>
+      <button id="next-month">&gt;</button>
+    </div>
+    <div class="calendar-weekdays">
+      <span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span><span>Su</span>
+    </div>
+    <div class="calendar-days"></div>
+  </div>
+</div>
+
+<!-- Sélecteur voyageurs -->
+
+  <div id="traveler-display" class="traveler-display"></div>
+  <div id="traveler-box" class="traveler-box">
+    <div class="traveler-row">
+      <span>Adultes</span>
+      <div class="traveler-controls">
+        <button id="adult-minus">▼</button>
+        <span id="adult-count">0</span>
+        <button id="adult-plus">▲</button>
+      </div>
+    </div>
+    <div class="traveler-row">
+      <span>Enfants -12 ans</span>
+      <div class="traveler-controls">
+        <button id="child-minus">▼</button>
+        <span id="child-count">0</span>
+        <button id="child-plus">▲</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <div id="toast-container"></div>
+  <script src="scriptee.js"></script>
+</body>
+</html>
