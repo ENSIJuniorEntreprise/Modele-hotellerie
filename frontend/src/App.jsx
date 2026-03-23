@@ -18,6 +18,13 @@ const routes = {
   '/contact': Contact,
   '/reservation': Reservation,
 }
+import Chambres from './pages/Chambres'
+
+function App() {
+  return <Chambres />
+}
+
+export default App
 
 function App() {
   const CurrentPage = routes[window.location.pathname.toLowerCase()] || Accueil
