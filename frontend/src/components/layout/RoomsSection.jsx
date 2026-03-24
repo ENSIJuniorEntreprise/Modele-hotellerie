@@ -32,7 +32,7 @@ const RoomsSection = () => {
     <section className="bg-[#faf8f5] py-24 px-6 md:px-10 font-sans">
       <div className="max-w-7xl mx-auto">
         
-        {/* --- EN-TÊTE AVEC DÉCORATION EXACTE --- */}
+  
         <div className="text-center mb-20">
           <div className="flex items-center justify-center gap-4 text-[11px] font-bold uppercase tracking-[0.5em] text-[#D1A243] mb-4">
             <span className="w-10 h-[1px] bg-[#D1A243]/30"></span>
@@ -55,12 +55,12 @@ const RoomsSection = () => {
           </p>
         </div>
 
-        {/* --- GRILLE DES CHAMBRES --- */}
+    
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-20">
           {rooms.map((room, index) => (
             <div key={index} className="group cursor-pointer">
               
-              {/* EFFET SHRINK (PHOTO 1) */}
+              
               <div className="relative overflow-hidden mb-8 bg-white transition-all duration-500 rounded-2xl p-0 group-hover:p-4 shadow-sm group-hover:shadow-2xl">
                 <div className="relative overflow-hidden rounded-xl h-[450px]">
                   <img 
@@ -71,7 +71,7 @@ const RoomsSection = () => {
                   
                   <div className="absolute inset-0 bg-[#1a2744]/0 group-hover:bg-[#1a2744]/10 transition-colors duration-500"></div>
 
-                  {/* Badge de prix arrondi */}
+              
                   <div className="absolute bottom-6 right-6 bg-[#1a2744] text-white p-5 min-w-[130px] text-center border-l-2 border-b-2 border-[#D1A243] shadow-2xl rounded-tr-2xl rounded-bl-2xl">
                     <span className="block text-[10px] uppercase tracking-widest text-[#D1A243] mb-1 font-bold">À partir de</span>
                     <div className="flex items-baseline justify-center">
@@ -82,7 +82,7 @@ const RoomsSection = () => {
                 </div>
               </div>
 
-              {/* INFOS TEXTE (PHOTO 2) */}
+            
               <div className="text-center px-4">
                 <h3 className="text-2xl font-serif text-[#1a2744] mb-4 group-hover:text-[#D1A243] transition-colors duration-300" style={{ fontFamily: "'Playfair Display', serif" }}>
                   {room.title}
@@ -107,7 +107,7 @@ const RoomsSection = () => {
           ))}
         </div>
 
-        {/* --- LE BOUTON MODIFIÉ EN LIEN --- */}
+
         <div className="flex justify-center">
           <a 
             href="/chambres" 
