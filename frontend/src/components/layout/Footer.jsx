@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import locationIcon from './assets/location.png';
+
+{/*import locationIcon from './assets/location.png';
 import phoneIcon from './assets/phone.png';
 import mailIcon from './assets/mail.png';
-import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
-import './Footer.css';
+import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from 'react-icons/fa';*/}
 
-function Footer() {
-  const Footer = () => {
+const Footer = () => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
@@ -44,13 +42,13 @@ function Footer() {
           <h3 className="font-serif font-bold text-[25px] mb-6 border-b border-white pb-2 w-full">Découvrir</h3>
           <ul className="list-none p-0 m-0">
             <li className="mb-4">
-              <Link to="/chambres" className="font-sans font-normal text-[#E8E2D9] text-xl no-underline hover:text-white hover:underline hover:pl-1 transition-all duration-200">Nos Chambres</Link>
+              <a href="/chambres" className="font-sans font-normal text-[#E8E2D9] text-xl no-underline hover:text-white hover:underline hover:pl-1 transition-all duration-200">Nos Chambres</a>
             </li>
             <li className="mb-4">
-              <Link to="/evenements" className="font-sans font-normal text-[#E8E2D9] text-xl no-underline hover:text-white hover:underline hover:pl-1 transition-all duration-200">Evénements</Link>
+              <a href="/evenements" className="font-sans font-normal text-[#E8E2D9] text-xl no-underline hover:text-white hover:underline hover:pl-1 transition-all duration-200">Evénements</a>
             </li>
             <li className="mb-4">
-              <Link to="/services" className="font-sans font-normal text-[#E8E2D9] text-xl no-underline hover:text-white hover:underline hover:pl-1 transition-all duration-200">Services</Link>
+              <a href="/services" className="font-sans font-normal text-[#E8E2D9] text-xl no-underline hover:text-white hover:underline hover:pl-1 transition-all duration-200">Services</a>
             </li>
           </ul>
         </div>
@@ -59,10 +57,10 @@ function Footer() {
           <h3 className="font-serif font-bold text-[25px] mb-6 border-b border-white pb-2 w-full">Informations</h3>
           <ul className="list-none p-0 m-0">
             <li className="mb-4">
-              <Link to="/contact" className="font-sans font-normal text-[#E8E2D9] text-xl no-underline hover:text-white hover:underline hover:pl-1 transition-all duration-200">Contact</Link>
+              <a href="/contact" className="font-sans font-normal text-[#E8E2D9] text-xl no-underline hover:text-white hover:underline hover:pl-1 transition-all duration-200">Contact</a>
             </li>
             <li className="mb-4">
-              <Link to="/galerie" className="font-sans font-normal text-[#E8E2D9] text-xl no-underline hover:text-white hover:underline hover:pl-1 transition-all duration-200">Galerie</Link>
+              <a href="/galerie" className="font-sans font-normal text-[#E8E2D9] text-xl no-underline hover:text-white hover:underline hover:pl-1 transition-all duration-200">Galerie</a>
             </li>
           </ul>
         </div>
@@ -96,7 +94,7 @@ function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-white/10 pt-5 flex flex-row justify-between items-center flex-nowrap gap-5">
+       <div className="border-t border-white/10 pt-5 flex flex-row justify-between items-center flex-nowrap gap-5">
 
         <div className="flex flex-row items-center flex-nowrap gap-4 shrink min-w-0">
           <span className="flex items-center whitespace-nowrap font-sans font-medium text-[#E8E2D9] text-lg">
@@ -144,8 +142,5 @@ function Footer() {
   );
 };
 
-  return <footer className="p-4" />
-}
-
-
+export default Footer;
 
