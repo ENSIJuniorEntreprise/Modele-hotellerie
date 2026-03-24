@@ -9,7 +9,8 @@ import mailIcon from './assets/mail.png';
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
 import './Footer.css';
 
-const Footer = () => {
+function Footer() {
+  const Footer = () => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
@@ -146,6 +147,8 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+  
+  return <footer className="p-4" />
+}
 
-
+export default Footer
