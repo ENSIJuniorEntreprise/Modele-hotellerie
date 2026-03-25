@@ -3,8 +3,6 @@ import React from 'react';
 const HeroSection = () => {
   return (
     <section className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-black">
-      
-      {/* --- ARRIÈRE-PLAN VIDÉO --- */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 w-[115%] h-[115%] -translate-x-1/2 -translate-y-1/2">
           <iframe
@@ -18,7 +16,6 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-black/50 backdrop-blur-[1px]"></div>
       </div>
 
-      {/* --- CONTENU TEXTUEL --- */}
       <div className="relative z-10 text-center text-white px-6 w-full max-w-5xl animate-fadeIn">
         
         <p className="text-[#D1A243] uppercase tracking-[0.8em] text-xs font-bold mb-8">
@@ -37,13 +34,13 @@ const HeroSection = () => {
           Découvrez un havre de paix au cœur de la ville, où le luxe rencontre l'authenticité pour une expérience inoubliable.
         </p>
 
-        {/* Boutons avec le même border-radius que le bouton "RÉSERVER" (ex: rounded-md ou rounded-lg) */}
+
         <div className="flex flex-col sm:flex-row items-center justify-center gap-10">
           <button className="bg-[#e8e2d9] text-[#1a2744] px-14 py-4 rounded-md font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-[#D1A243] hover:text-white transition-all duration-500 shadow-2xl">
             Réserver maintenant
           </button>
           
-          {/* Nouveau bouton : Explorer nos chambres */}
+
           <a 
             href="/chambres" 
             className="border border-white/40 backdrop-blur-md px-14 py-4 rounded-md font-bold uppercase tracking-[0.2em] text-[10px] text-white hover:bg-white hover:text-[#1a2744] transition-all duration-500 flex items-center justify-center"

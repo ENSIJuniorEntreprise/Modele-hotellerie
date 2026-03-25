@@ -42,7 +42,7 @@ const EventsSection = () => {
     <section className="bg-[#1a2744] py-24 px-6 md:px-10 overflow-hidden font-sans">
       <div className="max-w-7xl mx-auto">
         
-        {/* --- HEADER AVEC DÉCORATION EXACTE --- */}
+
         <div className="text-center mb-20">
           <div className="flex items-center justify-center gap-4 text-[11px] font-bold uppercase tracking-[0.5em] text-[#D1A243] mb-4">
             <span className="w-10 h-[1px] bg-[#D1A243]/30"></span>
@@ -63,7 +63,7 @@ const EventsSection = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           
-          {/* --- LEFT: TEXT & FEATURES --- */}
+         
           <div className="space-y-12">
             <p className="text-[#faf8f5]/70 text-lg font-light leading-relaxed max-w-lg">
               Que ce soit pour un mariage de rêve, une conférence professionnelle ou un événement privé, notre équipe dédiée vous accompagne pour créer des souvenirs inoubliables.
@@ -84,7 +84,6 @@ const EventsSection = () => {
             </div>
           </div>
 
-          {/* --- RIGHT: STATS GRID AVEC BORDER RADIUS (2xl) --- */}
           <div className="grid grid-cols-2 gap-4 md:gap-6">
             {stats.map((stat, idx) => (
               <div 
@@ -103,7 +102,7 @@ const EventsSection = () => {
 
         </div>
 
-        {/* --- BOUTON MODIFIÉ EN LIEN AVEC BORDER RADIUS (rounded-xl) --- */}
+       
         <div className="mt-20 flex justify-center">
           <a 
             href="/evenements" 

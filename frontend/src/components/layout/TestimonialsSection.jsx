@@ -46,7 +46,7 @@ const TestimonialsSection = () => {
     <section className="bg-[#faf8f5] py-24 px-6 md:px-10 font-sans relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
         
-        {/* --- HEADER CENTRALISÉ (Identique aux autres sections) --- */}
+ 
         <div className="text-center mb-20 relative">
           <div className="flex items-center justify-center gap-4 text-[11px] font-bold uppercase tracking-[0.5em] text-[#D1A243] mb-4">
             <span className="w-12 h-[1px] bg-[#D1A243]/30"></span>
@@ -70,9 +70,9 @@ const TestimonialsSection = () => {
           </p>
         </div>
 
-        {/* --- ZONE DES CARTES AVEC NAVIGATION SUR LES CÔTÉS --- */}
+     
         <div className="relative px-0 md:px-16">
-          {/* Bouton Gauche */}
+      
           <button 
             onClick={prevPage}
             className="absolute left-[-20px] top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white border border-[#e8e2d9] flex items-center justify-center text-[#1a2744] hover:bg-[#D1A243] hover:text-white transition-all duration-300 shadow-sm hidden md:flex"
@@ -101,7 +101,7 @@ const TestimonialsSection = () => {
             ))}
           </div>
 
-          {/* Bouton Droite */}
+        
           <button 
             onClick={nextPage}
             className="absolute right-[-20px] top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-[#1a2744] flex items-center justify-center text-white hover:bg-[#D1A243] transition-all duration-300 shadow-lg hidden md:flex"
@@ -110,7 +110,7 @@ const TestimonialsSection = () => {
           </button>
         </div>
 
-        {/* --- DOTS DYNAMIQUES --- */}
+       
         <div className="flex justify-center gap-3 mb-20">
           {[...Array(totalPages)].map((_, i) => (
             <button
@@ -121,7 +121,7 @@ const TestimonialsSection = () => {
           ))}
         </div>
 
-        {/* --- STATS --- */}
+        
         <div className="grid grid-cols-3 gap-4 max-w-4xl mx-auto pt-10 border-t border-[#e8e2d9]">
           {stats.map((stat, idx) => (
             <div key={idx} className="text-center">

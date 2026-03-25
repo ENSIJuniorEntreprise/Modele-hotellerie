@@ -38,7 +38,7 @@ const AboutSection = () => {
     <section className="bg-[#FAF9F6] py-24 px-6 md:px-10 font-sans overflow-hidden">
       <div className="max-w-7xl mx-auto">
         
-        {/* --- HEADER --- */}
+     
         <div className="text-center mb-20 relative">
           <div className="flex items-center justify-center gap-4 text-[11px] font-bold uppercase tracking-[0.5em] text-[#D1A243] mb-4">
             <span className="w-8 h-[1px] bg-[#D1A243]/40"></span>
@@ -61,14 +61,14 @@ const AboutSection = () => {
           </p>
         </div>
 
-        {/* --- GRILLE AVEC BORDER RADIUS RESPECTÉ (16px / rounded-2xl) --- */}
+      
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {features.map((item, idx) => (
             <div 
               key={idx} 
               className="group bg-white border border-[#e8e2d9]/50 rounded-2xl p-10 flex flex-col items-center text-center transition-all duration-500 hover:shadow-2xl hover:shadow-[#1a2744]/5 hover:-translate-y-2"
             >
-              {/* Icône avec cercle de fond doux */}
+            
               <div className="mb-8 w-24 h-24 bg-[#FAF9F6] rounded-full flex items-center justify-center relative transform transition-transform duration-500 group-hover:scale-110">
                 {item.icon}
               </div>
@@ -81,7 +81,7 @@ const AboutSection = () => {
                 {item.desc}
               </p>
 
-              {/* Ligne décorative dorée au hover */}
+              
               <div className="mt-8 w-10 h-[2px] bg-[#e8e2d9] transition-all duration-500 group-hover:w-20 group-hover:bg-[#D1A243]"></div>
             </div>
           ))}
