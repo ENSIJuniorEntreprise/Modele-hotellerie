@@ -17,12 +17,7 @@ body {
   overflow-x: hidden;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-serif);
   margin: 0;
 }
@@ -45,6 +40,7 @@ img {
   margin-bottom: 60px;
   position: relative;
 }
+
 .container1 {
   max-width: 1440px;
   margin: 0 auto;
@@ -56,7 +52,11 @@ img {
 .section-title-group {
   text-align: center;
   margin-bottom: 100px;
-  margin-top: -50px;
+  margin-top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
 }
 
 .section-subtitle {
@@ -64,8 +64,9 @@ img {
   font-size: 11px;
   letter-spacing: 3px;
   text-transform: uppercase;
-  margin-bottom: -20px;
+  margin-bottom: 16px;
   font-weight: 600;
+  display: block;
 }
 
 .section-title {
@@ -73,7 +74,7 @@ img {
   color: var(--color-dark);
 }
 
-/* Utility for merged images */
+/* ------------------- Merged icon ------------------- */
 .merged-icon {
   position: relative;
   width: 45px;
@@ -85,50 +86,47 @@ img {
 
 .merged-icon img:first-child {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   z-index: 1;
 }
 
 .merged-icon img:last-child {
   position: relative;
   z-index: 2;
-  width: 50%; /* Approximate size for icon inside circle */
+  width: 50%;
   height: auto;
 }
 
+/* ------------------- Hero ------------------- */
 #section-hero {
   position: relative;
   width: 100%;
-  height: 800px; /* Approximate height based on design */
+  height: 800px;
   overflow: hidden;
 }
+
 .hero-wrapper {
   position: relative;
   width: 100%;
   height: 100%;
 }
+
 .hero-bg {
   width: 100%;
   height: 100%;
   object-fit: cover;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   z-index: 1;
 }
+
 .hero-overlay {
   position: relative;
   z-index: 2;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    180deg,
-    rgba(26, 39, 68, 0.3) 0%,
-    rgba(26, 39, 68, 0.1) 100%
-  );
+  background: linear-gradient(180deg, rgba(26,39,68,0.3) 0%, rgba(26,39,68,0.1) 100%);
   display: flex;
   flex-direction: column;
 }
@@ -141,75 +139,76 @@ img {
   align-items: center;
   text-align: center;
   color: var(--color-offwhite);
-  margin-top: -80px; /* Visual adjustment */
+  margin-top: -80px;
+  padding: 0 20px;
 }
+
 .hero-subtitle {
   color: var(--color-gold-light);
   font-size: 30px;
   letter-spacing: 6px;
   margin-bottom: 24px;
 }
+
 .hero-title {
-  font-size: 64px;
+  font-size: clamp(22px, 4vw, 64px);
   margin-bottom: 24px;
-  max-width: 1100px;
-  line-height: 1.1;
-  white-space: nowrap;
+  max-width: 90vw;
+  width: 100%;
+  line-height: 1.15;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  padding: 0 24px;
+  box-sizing: border-box;
 }
+
 .hero-desc {
   font-size: 20px;
   color: var(--color-offwhite);
-  font-family: 'Playfair Display' , serif;
+  font-family: 'Playfair Display', serif;
   letter-spacing: 1.5px;
-  margin-top:-30px ;
-}
-@media (max-width: 1024px) {
-  .nav-links {
-    display: none;
-  } /* Simplified for mobile */
-  .hero-title {
-    font-size: 42px;
-  }
+  margin-top: -30px;
 }
 
+/* ------------------- Restaurants ------------------- */
 #section-restaurants {
   padding: 100px 0;
 }
+
 .restaurants-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 40px;
 }
-@media (max-width: 900px) {
-  .restaurants-grid {
-    grid-template-columns: 1fr;
-  }
-}
-/* Reusing component styles inline for simplicity in this specific block structure if needed, 
-   but global component classes defined above work best. */
+
 .card-restaurant {
   background-color: var(--color-beige);
   border-radius: 50px;
   overflow: hidden;
-  box-shadow: 0px 16px 32px -8px rgba(12, 12, 13, 0.4);
+  box-shadow: 0px 16px 32px -8px rgba(12,12,13,0.4);
   display: flex;
   flex-direction: column;
 }
+
 .card-restaurant .card-image img {
   width: 100%;
   height: 220px;
   object-fit: cover;
 }
+
 .card-restaurant .card-content {
   padding: 30px;
   text-align: center;
 }
+
 .card-restaurant .card-title {
   color: var(--color-gold);
   font-size: 24px;
   margin-bottom: 16px;
   font-family: var(--font-serif);
 }
+
 .card-restaurant .card-desc {
   color: var(--color-dark);
   font-size: 16px;
@@ -217,160 +216,137 @@ img {
   line-height: 1.6;
 }
 
+/* ------------------- Bars ------------------- */
 #section-bars {
   background-color: var(--color-dark);
   padding: 100px 0;
 }
+
 .bars-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 40px;
 }
-@media (max-width: 1024px) {
-  .bars-grid {
-    grid-template-columns: 1fr;
-  }
-}
-/* Component styles repeated for clarity within section context if needed, relying on global component block */
 
+/* ------------------- Spa ------------------- */
 #section-spa {
-  background-color: var(
-    --color-beige
-  ); /* Based on visual context, though style_29 says beige */
+  background-color: var(--color-beige);
   padding: 100px 0;
 }
+
 .spa-layout {
   display: flex;
   flex-direction: column;
   gap: 60px;
 }
+
 .spa-hero-image img {
   width: 100%;
   height: 500px;
   object-fit: cover;
   border-radius: 25px;
-  box-shadow: 0px 16px 32px -8px rgba(12, 12, 13, 0.4);
+  box-shadow: 0px 16px 32px -8px rgba(12,12,13,0.4);
   transition: opacity 0.5s ease;
 }
+
 .spa-services-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
 }
-@media (max-width: 900px) {
-  .spa-services-grid {
-    grid-template-columns: 1fr;
-  }
-}
 
+/* ------------------- Activities ------------------- */
 #section-activities {
   background-color: var(--color-dark);
   padding: 100px 0;
 }
+
 .activities-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 40px;
 }
-@media (max-width: 900px) {
-  .activities-grid {
-    grid-template-columns: 1fr;
-  }
-}
 
+/* ------------------- Fitness ------------------- */
 #section-fitness {
   padding: 100px 0;
 }
+
 .fitness-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 40px;
 }
-@media (max-width: 900px) {
-  .fitness-grid {
-    grid-template-columns: 1fr;
-  }
+
+/* ==================== FLIP CARDS (petites) ==================== */
+.flip-card {
+  width: 100%;
+  max-width: 390px;
+  height: 323px;
+  perspective: 1200px;
+  margin: 0 auto;
 }
 
-/* carte */
-
-.flip-card{
-width:390px;
-height:323px;
-perspective:1200px;
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
 }
 
-.flip-card-inner{
-position:relative;
-width:100%;
-height:100%;
-transition:transform 0.8s;
-transform-style:preserve-3d;
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
 }
-
-.flip-card:hover .flip-card-inner{
-transform:rotateY(180deg);
-}
-
-/* faces */
 
 .card-front,
-.card-back{
-position:absolute;
-width:100%;
-height:100%;
-border-radius:50px;
-overflow:hidden;
-backface-visibility:hidden;
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50px;
+  overflow: hidden;
+  backface-visibility: hidden;
 }
 
-/* FRONT */
-
-.card-front{
-background:#E8E2D9;
+.card-front {
+  background: #E8E2D9;
 }
 
-.card-title{
-text-align:center;
-padding:20px;
-font-size:32px;
-color:#1A2744;
-font-weight: 600;
-padding-top: 30px;
-font-family: 'Playfair Display', serif;
+.card-title {
+  text-align: center;
+  padding: 20px;
+  font-size: 32px;
+  color: #1A2744;
+  font-weight: 600;
+  padding-top: 30px;
+  font-family: 'Playfair Display', serif;
 }
 
-.card-image img{
-padding-top: 9.5px;
-width:100%;
-height: 227px;
-object-fit:cover;
-border-bottom-left-radius:50px;
-border-bottom-right-radius:50px;
+.card-image img {
+  padding-top: 9.5px;
+  width: 100%;
+  height: 227px;
+  object-fit: cover;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
 }
-
-/* BACK */
 
 .card-back {
   background: #E8E2D9;
   transform: rotateY(180deg);
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   border-radius: 50px;
   overflow: hidden;
-
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* espace entre le titre et les tirets */
-  align-items: center; /* centre horizontalement comme le front */
-  padding: 30px; /* garde un padding intérieur uniforme */
-  box-sizing: border-box; /* important pour que le padding ne dépasse pas la taille */
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
+  box-sizing: border-box;
 }
-
-/* titre */
 
 .back-title {
   text-align: center;
@@ -378,14 +354,11 @@ border-bottom-right-radius:50px;
   font-size: 32px;
   font-weight: 600;
   font-family: 'Playfair Display', serif;
-   /* supprime tout margin par défaut */
 }
 
-/* liste */
-
 .card-list {
-  position: relative; 
-  top: -15px; 
+  position: relative;
+  top: -15px;
   padding-left: 30px;
   font-size: 20px;
   color: #1A2744;
@@ -395,91 +368,79 @@ border-bottom-right-radius:50px;
   list-style-type: disc;
 }
 
-.card-list li{
-margin-bottom:12px;
+.card-list li {
+  margin-bottom: 12px;
 }
 
-/*....................................................*/
-
-/* carte */
-
-.flip-card1{
-width:600px;
-height:446px;
-perspective:1200px;
+/* ==================== FLIP CARDS (grandes) ==================== */
+.flip-card1 {
+  width: 100%;
+  max-width: 600px;
+  height: 446px;
+  perspective: 1200px;
+  margin: 0 auto;
 }
 
-.flip-card-inner1{
-position:relative;
-width:100%;
-height:100%;
-transition:transform 0.8s;
-transform-style:preserve-3d;
+.flip-card-inner1 {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
 }
 
-.flip-card1:hover .flip-card-inner1{
-transform:rotateY(180deg);
+.flip-card1:hover .flip-card-inner1 {
+  transform: rotateY(180deg);
 }
-
-/* faces */
 
 .card-front1,
-.card-back1{
-position:absolute;
-width:100%;
-height:100%;
-border-radius:50px;
-overflow:hidden;
-backface-visibility:hidden;
+.card-back1 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50px;
+  overflow: hidden;
+  backface-visibility: hidden;
 }
 
-/* FRONT */
-
-.card-front1{
-background:#E8E2D9;
+.card-front1 {
+  background: #E8E2D9;
 }
 
-.card-title1{
-text-align:center;
-padding:20px;
-font-size:32px;
-color:#1A2744;
-font-weight: 600;
-padding-top: 30px;
-font-family: 'Playfair Display', serif;
+.card-title1 {
+  text-align: center;
+  padding: 20px;
+  font-size: 32px;
+  color: #1A2744;
+  font-weight: 600;
+  padding-top: 30px;
+  font-family: 'Playfair Display', serif;
 }
 
-.card-image1 img{
-padding-top: 9.5px;
-width:100%;
-height: 370px;
-object-fit:cover;
-border-bottom-left-radius:50px;
-border-bottom-right-radius:50px;
+.card-image1 img {
+  padding-top: 9.5px;
+  width: 100%;
+  height: 370px;
+  object-fit: cover;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
 }
-
-/* BACK */
 
 .card-back1 {
   background: #E8E2D9;
   transform: rotateY(180deg);
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   border-radius: 50px;
   overflow: hidden;
-
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* espace entre le titre et les tirets */
-  align-items: center; /* centre horizontalement comme le front */
-  padding: 30px; /* garde un padding intérieur uniforme */
-  box-sizing: border-box; /* important pour que le padding ne dépasse pas la taille */
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
+  box-sizing: border-box;
 }
-
-/* titre */
 
 .back-title1 {
   text-align: center;
@@ -487,14 +448,12 @@ border-bottom-right-radius:50px;
   font-size: 32px;
   font-weight: 600;
   font-family: 'Playfair Display', serif;
-  margin: 0; /* supprime tout margin par défaut */
+  margin: 0;
 }
 
-/* liste */
-
 .card-list1 {
-  position: relative; 
-  top: -20px; 
+  position: relative;
+  top: -20px;
   padding-left: 30px;
   font-size: 20px;
   color: #1A2744;
@@ -504,106 +463,388 @@ border-bottom-right-radius:50px;
   list-style-type: disc;
 }
 
-.card-list1 li{
-margin-bottom:12px;
+.card-list1 li {
+  margin-bottom: 12px;
 }
 
-/*................................................*/
-.services{
-    display:grid;
-    grid-template-columns:repeat(3, 330px);
-    gap:40px;
-    justify-content:center;
+/* ==================== SPA SERVICES GRID ==================== */
+.services {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  justify-content: center;
 }
 
-.card3{
-    display:flex;
-    align-items:center;
-    gap:25px;
-
-    background:#FAF8F5;
-
-    padding:20px 30px;
-
-    border-radius:12px;
-
-    box-shadow:0 10px 20px rgba(0,0,0,0.1);
+.card3 {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  background: #FAF8F5;
+  padding: 20px 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
+
 .card3:hover {
   background-color: #1a2744b6;
   color: white;
 }
 
-.card3 img{
-    width:50px;
-    height:50px;
+.card3 img {
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
 }
 
-.service-title3{
-    font-family:"Playfair Display", serif;
-    font-size:50px;
-    font-weight:400;
-}
-/*..................................................*/
-.activities{
-    display:grid;
-    grid-template-columns:repeat(3, 1fr);
-    gap:40px;
-    justify-content:center;
+.service-title3 {
+  font-family: "Playfair Display", serif;
+  font-size: 50px;
+  font-weight: 400;
 }
 
-.card4{
-    width:390px;
-    height:335px;
-
-    background:#E8E2D9;
-
-    border-radius:50px;
-
-    overflow:hidden;
-
-    text-align:center;
+/* ==================== ACTIVITIES CARDS ==================== */
+.activities {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  justify-content: center;
 }
 
-.card4 img{
-    width:390px;
-    height:240px;
-
-    object-fit:cover;
+.card4 {
+  width: 100%;
+  height: 335px;
+  background: #E8E2D9;
+  border-radius: 50px;
+  overflow: hidden;
+  text-align: center;
 }
 
-.title4{
-    font-family:"Playfair Display", serif;
-    font-size:32px;
-    font-weight:400;
-    margin-top: 20px;
-    font-weight: 600;
-    color:#1A2744;
+.card4 img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
 }
-/*..................................................................................................................*/
+
+.title4 {
+  font-family: "Playfair Display", serif;
+  font-size: 32px;
+  font-weight: 600;
+  margin-top: 20px;
+  color: #1A2744;
+}
+
+/* ==================== SLIDER ==================== */
 .slider {
-    width: 1360px;   /* Largeur fixe du cadre */
-    height: 700px;  /* Hauteur fixe du cadre */
-    overflow: hidden;
-    margin: 50px auto; /* Centre le slider sur la page */
-    border-radius: 25px;
-    position: relative;
-    background-color: #eee; /* Fond de secours */
-    margin-top: -20px;
+  width: 100%;
+  max-width: 1360px;
+  height: 700px;
+  overflow: hidden;
+  margin: 0 auto;
+  border-radius: 25px;
+  position: relative;
+  background-color: #eee;
+  margin-top: -20px;
 }
 
 .slides {
-    display: flex;
-    width: fit-content; /* S'adapte au nombre d'images */
-    /* La transition sera gérée par le JS */
+  display: flex;
+  width: fit-content;
 }
 
 .slides img {
-    /* TRÈS IMPORTANT : On force l'image à faire exactement la taille du slider */
-    width: 1360px; 
-    min-width: 1360px; 
-    height: 700px;
-    object-fit: cover; /* Remplit sans déformer */
-    display: block;
-    flex-shrink: 0; /* Empêche l'image de rétrécir */
+  width: 100vw;
+  max-width: 1360px;
+  min-width: unset;
+  height: 700px;
+  object-fit: cover;
+  display: block;
+  flex-shrink: 0;
+}
+
+/* ==================== RESPONSIVE ==================== */
+
+/* --- Tablette (≤1200px) --- */
+@media (max-width: 1200px) {
+  .section-title {
+    font-size: 60px;
+  }
+
+  .service-title3 {
+    font-size: 36px;
+  }
+
+  .slider,
+  .slides img {
+    height: 500px;
+  }
+}
+
+/* --- Tablette (≤1024px) --- */
+@media (max-width: 1024px) {
+  #section-hero {
+    height: 600px;
+  }
+
+  .hero-subtitle {
+    font-size: 20px;
+  }
+
+  /* Restaurants & Fitness : 2 cols + 3ème centrée */
+  .restaurants-grid,
+  .fitness-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* 3ème carte centrée sous les 2 premières */
+  .restaurants-grid .flip-card:last-child,
+  .fitness-grid .flip-card:last-child {
+    grid-column: 1 / -1;
+    max-width: 390px;
+    margin: 0 auto;
+  }
+
+  .activities-grid,
+  .spa-services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .bars-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .activities {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .services {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .section-title-group {
+    margin-bottom: 60px;
+  }
+
+  .slider,
+  .slides img {
+    height: 420px;
+  }
+
+  .flip-card {
+    height: 300px;
+  }
+
+  .flip-card1 {
+    height: 400px;
+    max-width: 100%;
+  }
+
+  .card-image1 img {
+    height: 320px;
+  }
+}
+
+/* --- Très petit écran (≤343px) : texte back des cartes ---- */
+@media (max-width: 343px) {
+  .back-title,
+  .back-title1 {
+    font-size: 18px;
+  }
+
+  .card-list,
+  .card-list1 {
+    font-size: 12px;
+    line-height: 1.5;
+    padding-left: 18px;
+    top: 0;
+  }
+
+  .card-list li,
+  .card-list1 li {
+    margin-bottom: 8px;
+  }
+}
+
+/* --- Mobile (≤768px) --- */
+@media (max-width: 768px) {
+  #section-hero {
+    height: 500px;
+  }
+
+  .hero-title {
+    font-size: 28px;
+    white-space: normal;
+  }
+
+  .hero-subtitle {
+    font-size: 16px;
+    letter-spacing: 3px;
+  }
+
+  .hero-desc {
+    font-size: 16px;
+    margin-top: -10px;
+  }
+
+  .section-title {
+    font-size: 44px;
+  }
+
+  .section-title-group {
+    margin-bottom: 40px;
+    margin-top: -20px;
+  }
+
+  #section-restaurants,
+  #section-bars,
+  #section-spa,
+  #section-activities,
+  #section-fitness {
+    padding: 60px 0;
+  }
+
+  .restaurants-grid,
+  .activities-grid,
+  .fitness-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bars-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .activities {
+    grid-template-columns: 1fr;
+  }
+
+  .services {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .card3 {
+    padding: 16px 20px;
+    gap: 16px;
+  }
+
+  .service-title3 {
+    font-size: 26px;
+  }
+
+  .card3 img {
+    width: 38px;
+    height: 38px;
+  }
+
+  .flip-card {
+    height: 280px;
+    max-width: 100%;
+  }
+
+  .card-image img {
+    height: 200px;
+  }
+
+  .card-title {
+    font-size: 24px;
+    padding-top: 20px;
+  }
+
+  .back-title {
+    font-size: 24px;
+  }
+
+  .card-list {
+    font-size: 16px;
+    top: 0;
+  }
+
+  .flip-card1 {
+    height: 360px;
+    max-width: 100%;
+  }
+
+  .card-image1 img {
+    height: 280px;
+  }
+
+  .card-title1 {
+    font-size: 24px;
+    padding-top: 20px;
+  }
+
+  .back-title1 {
+    font-size: 24px;
+  }
+
+  .card-list1 {
+    font-size: 16px;
+    top: 0;
+  }
+
+  .card4 {
+    height: auto;
+  }
+
+  .card4 img {
+    height: 200px;
+  }
+
+  .title4 {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+
+  .slider {
+    border-radius: 15px;
+    height: 300px;
+  }
+
+  .slides img {
+    height: 300px;
+    width: 100vw;
+  }
+}
+
+/* --- Petit mobile (≤480px) --- */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 22px;
+  }
+
+  .section-title {
+    font-size: 36px;
+  }
+
+  .services {
+    grid-template-columns: 1fr;
+  }
+
+  .service-title3 {
+    font-size: 28px;
+  }
+
+  .slider {
+    height: 240px;
+    border-radius: 12px;
+  }
+
+  .slides img {
+    height: 240px;
+  }
+
+  .flip-card {
+    height: 260px;
+  }
+
+  .card-image img {
+    height: 180px;
+  }
+
+  .flip-card1 {
+    height: 320px;
+  }
+
+  .card-image1 img {
+    height: 250px;
+  }
 }
