@@ -1,13 +1,13 @@
 import React from 'react';
 
 const FeaturesSection = () => {
-  // On stocke les données des atouts dans un tableau pour rendre le code plus propre
+ 
   const features = [
     {
       title: "Luxe Raffiné",
       description: "Chaque détail est pensé pour vous offrir une expérience d'exception.",
       icon: (
-        // Icône "Blason / Qualité" conforme à l'image
+
         <svg className="w-12 h-12 text-[#D1A243]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" strokeLinecap="round" strokeLinejoin="round"/>
           <path d="M8 10h8M12 7v6" strokeLinecap="round" strokeLinejoin="round"/>
@@ -18,7 +18,7 @@ const FeaturesSection = () => {
       title: "Emplacement Idéal",
       description: "Au cœur de la ville, à proximité des plus beaux monuments.",
       icon: (
-        // Icône "Localisation" conforme à l'image
+      
         <svg className="w-12 h-12 text-[#D1A243]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
           <path d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
           <path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" strokeLinecap="round" strokeLinejoin="round" />
@@ -29,7 +29,7 @@ const FeaturesSection = () => {
       title: "Gastronomie",
       description: "Une cuisine étoilée qui éveille les sens et ravit les palais.",
       icon: (
-        // Icône "Couverts / Assiette" conforme à l'image
+    
         <svg className="w-12 h-12 text-[#D1A243]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
           <path d="M3 12h18M9 20l3-4 3 4" strokeLinecap="round" strokeLinejoin="round"/>
           <path d="M12 16a4 4 0 100-8 4 4 0 000 8z" />
@@ -41,7 +41,7 @@ const FeaturesSection = () => {
       title: "Service 5 Étoiles",
       description: "Un personnel dévoué, attentif à vos moindres désirs.",
       icon: (
-        // Icône "Majordome / Main" conforme à l'image
+      
         <svg className="w-12 h-12 text-[#D1A243]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
           <path d="M20 20v-8a2 2 0 00-2-2H6a2 2 0 00-2 2v8" strokeLinecap="round" strokeLinejoin="round"/>
           <path d="M22 20H2M16 6l-2-2a2.828 2.828 0 00-4 0L8 6" strokeLinecap="round" strokeLinejoin="round"/>
@@ -52,7 +52,7 @@ const FeaturesSection = () => {
   ];
 
   return (
-    // Section sur fond bleu nuit (#1a2744)
+   
     <section className="bg-[#1a2744] py-28 px-6 md:px-10 font-sans overflow-hidden">
       <div className="max-w-7xl mx-auto">
         
@@ -65,7 +65,7 @@ const FeaturesSection = () => {
           </div>
           
           <h2 className="text-4xl md:text-6xl font-serif text-[#FAF9F6] leading-tight mb-8" style={{ fontFamily: "'Playfair Display', serif" }}>
-            L'Excellence <span className="text-[#D1A243]">au</span><br />Quotidien
+            L'Excellence <span className="text-[#D1A243]">au</span> Quotidien
           </h2>
 
           {/* Décoration centrale Losange doré */}
@@ -85,7 +85,7 @@ const FeaturesSection = () => {
           {features.map((feature, index) => (
             <div 
               key={index} 
-              // ARRONDI COHÉRENT : rounded-2xl (16px) sur fond blanc
+             
               className="group bg-white border border-[#e8e2d9]/50 rounded-2xl p-10 flex flex-col items-center text-center transition-all duration-700 ease-out hover:-translate-y-3 hover:shadow-2xl hover:shadow-[#1a2744]/10 cursor-default"
             >
               {/* Conteneur Icône circulaire doux */}

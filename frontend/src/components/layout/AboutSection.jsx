@@ -46,7 +46,7 @@ const AboutSection = () => {
             <span className="w-8 h-[1px] bg-[#D1A243]/40"></span>
           </div>
           
-          <h2 className="text-5xl md:text-6xl font-serif text-[#1a2744] mb-6" style={{ fontFamily: "'Playfair Display', serif" }}>
+          <h2 className="text-6xl md:text-7xl font-serif text-[#1a2744] mb-6" style={{ fontFamily: "'Playfair Display', serif" }}>
             À Propos
           </h2>
 
