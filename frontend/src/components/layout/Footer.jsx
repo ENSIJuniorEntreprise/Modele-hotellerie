@@ -1,3 +1,6 @@
+function Footer() {
+  return <footer className="p-4" />
+}
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import locationIcon from './assets/location.png';
@@ -144,8 +147,8 @@ function Footer() {
   );
 };
 
+  
   return <footer className="p-4" />
 }
 
-
-
+export default Footer
