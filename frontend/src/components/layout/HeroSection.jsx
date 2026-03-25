@@ -14,28 +14,29 @@ const HeroSection = () => {
           ></iframe>
         </div>
         <div className="absolute inset-0 bg-black/50 backdrop-blur-[1px]"></div>
+        <div className="absolute inset-0 bg-[#1a2744]/60 block md:hidden"></div>
       </div>
 
-      <div className="relative z-10 text-center text-white px-6 w-full max-w-5xl animate-fadeIn">
+      <div className="relative z-10 text-center text-white px-6 w-full max-w-5xl animate-fadeIn pt-20 md:pt-0">
+  
+      <p className="text-[#D1A243] uppercase tracking-[0.5em] md:tracking-[0.8em] text-[9px] md:text-xs font-bold mb-6 md:mb-8">
+        Bienvenue à l'excellence
+      </p>
         
-        <p className="text-[#D1A243] uppercase tracking-[0.8em] text-xs font-bold mb-8">
-          Bienvenue à l'excellence
-        </p>
-        
-        <h1 className="text-6xl md:text-[8rem] font-serif mb-6 leading-none tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+        <h1 className="text-6xl sm:text-7xl md:text-8xl font-serif mb-6 leading-none tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
           L'Hôtel
         </h1>
         
-        <p className="text-2xl md:text-4xl font-serif italic mb-10 text-white/90" style={{ fontFamily: "'Playfair Display', serif" }}>
+        <p className="text-xl md:text-3xl font-serif italic mb-10 text-white/90" style={{ fontFamily: "'Playfair Display', serif" }}>
           L'Art de Vivre au Sommet
         </p>
 
-        <p className="max-w-2xl mx-auto text-white/70 font-light leading-relaxed mb-16 text-base md:text-xl tracking-wide px-4">
+        <p className="max-w-2xl mx-auto text-white/70 font-light leading-relaxed mb-8 md:mb-16 text-base md:text-xl tracking-wide px-4">
           Découvrez un havre de paix au cœur de la ville, où le luxe rencontre l'authenticité pour une expérience inoubliable.
         </p>
 
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-10">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-10">
           <button className="bg-[#e8e2d9] text-[#1a2744] px-14 py-4 rounded-md font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-[#D1A243] hover:text-white transition-all duration-500 shadow-2xl">
             Réserver maintenant
           </button>

@@ -50,8 +50,8 @@ const EventsSection = () => {
             <span className="w-10 h-[1px] bg-[#D1A243]/30"></span>
           </div>
           
-          <h2 className="text-4xl md:text-6xl font-serif text-[#faf8f5] leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
-            Célébrez Vos <span className="text-[#D1A243]">Moments</span> <br /> d'Exception
+          <h2 className="text-3xl md:text-5xl lg:text-6xl  font-serif text-[#faf8f5] leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+            Célébrez Vos <span className="text-[#D1A243]">Moments</span> d'Exception
           </h2>
 
           <div className="flex items-center justify-center gap-4 mt-8">
