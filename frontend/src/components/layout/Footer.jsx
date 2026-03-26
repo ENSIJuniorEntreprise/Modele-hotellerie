@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-
-{/*import locationIcon from './assets/location.png';
-import phoneIcon from './assets/phone-call.png';
-import mailIcon from './assets/mail.png';*/}
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
+import locationIcon from '../../assets/location.png';
+import phoneIcon from '../../assets/phone-call.png';
+import mailIcon from '../../assets/mail.png';
 
 const Footer = () => {
   const [email, setEmail] = useState('');
@@ -26,7 +25,7 @@ const Footer = () => {
     <footer className="bg-[#1a253c] text-white w-full px-[5%] pt-2 pb-4 box-border">
 
       <div className="text-center mb-0">
-        <h1 className="font-serif text-[45px] text-white border-b border-white inline-block pb-100 mb-3">L'Hôtel</h1>
+        <h1 className="font-serif text-[45px] text-white border-b border-white inline-block pb-2 mb-3">L'Hôtel</h1>
         <p className="font-sans font-normal text-[#E8E2D9] text-[20px] text-xl mt-0">"L'excellence hôtelière où confort, prestige et raffinement se rencontrent."</p>
       </div>
 
@@ -42,13 +41,13 @@ const Footer = () => {
           <h3 className="font-serif font-bold text-[25px] mb-6 border-b border-white pb-2 w-full">Découvrir</h3>
           <ul className="list-none p-0 m-0">
             <li className="mb-4">
-              <a href="/chambres" className="font-sans font-normal text-[#E8E2D9] text-xl no-underline hover:text-white hover:underline hover:pl-1 transition-all duration-200">Nos Chambres</a>
+              <a href="/chambres" className="font-sans font-normal !text-[#E8E2D9] text-xl no-underline hover:text-white hover:underline hover:pl-1 transition-all duration-200">Nos Chambres</a>
             </li>
             <li className="mb-4">
-              <a href="/evenements" className="font-sans font-normal text-[#E8E2D9] text-xl no-underline hover:text-white hover:underline hover:pl-1 transition-all duration-200">Evénements</a>
+              <a href="/evenements" className="font-sans font-normal !text-[#E8E2D9] text-xl no-underline hover:text-white hover:underline hover:pl-1 transition-all duration-200">Evénements</a>
             </li>
             <li className="mb-4">
-              <a href="/services" className="font-sans font-normal text-[#E8E2D9] text-xl no-underline hover:text-white hover:underline hover:pl-1 transition-all duration-200">Services</a>
+              <a href="/services" className="font-sans font-normal !text-[#E8E2D9] text-xl no-underline hover:text-white hover:underline hover:pl-1 transition-all duration-200">Services</a>
             </li>
           </ul>
         </div>
@@ -57,10 +56,10 @@ const Footer = () => {
           <h3 className="font-serif font-bold text-[25px] mb-6 border-b border-white pb-2 w-full">Informations</h3>
           <ul className="list-none p-0 m-0">
             <li className="mb-4">
-              <a href="/contact" className="font-sans font-normal text-[#E8E2D9] text-xl no-underline hover:text-white hover:underline hover:pl-1 transition-all duration-200">Contact</a>
+              <a href="/contact" className="font-sans font-normal !text-[#E8E2D9] text-xl no-underline hover:text-white hover:underline hover:pl-1 transition-all duration-200">Contact</a>
             </li>
             <li className="mb-4">
-              <a href="/galerie" className="font-sans font-normal text-[#E8E2D9] text-xl no-underline hover:text-white hover:underline hover:pl-1 transition-all duration-200">Galerie</a>
+              <a href="/galerie" className="font-sans font-normal !text-[#E8E2D9] text-xl no-underline hover:text-white hover:underline hover:pl-1 transition-all duration-200">Galerie</a>
             </li>
           </ul>
         </div>
@@ -81,8 +80,10 @@ const Footer = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full text-[#1a253c] p-4 bg-[#E8E2D9] border-none font-medium text-xl mt-3 cursor-pointer text-left disabled:opacity-60 hover:bg-white transition-colors duration-200"
-            >
+              style={{ backgroundColor: '#E8E2D9', color: '#1a253c', borderRadius: '0', padding:'20px 16px' ,fontSize:'18px' }}
+
+              className="w-full py-5 border-none font-medium text-2xl mt-3 cursor-pointer text-left disabled:opacity-60 transition-colors duration-200 px-4">
+
               {loading ? 'Envoi...' : 'Confirmer'}
             </button>
           </form>
@@ -94,7 +95,7 @@ const Footer = () => {
         </div>
       </div>
 
-       <div className="border-t border-white/10 pt-5 flex flex-row justify-between items-center flex-nowrap gap-5">
+      <div className="border-t border-white/10 pt-5 flex flex-row justify-between items-center flex-nowrap gap-5">
 
         <div className="flex flex-row items-center flex-nowrap gap-4 shrink min-w-0">
           <span className="flex items-center whitespace-nowrap font-sans font-medium text-[#E8E2D9] text-lg">
@@ -129,7 +130,9 @@ const Footer = () => {
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="border border-white rounded-full w-8 h-8 flex items-center justify-center text-white cursor-pointer transition-all duration-300 hover:bg-white hover:text-[#1a253c]"
+                className="!border-white rounded-full w-8 h-8 flex items-center justify-center !text-white cursor-pointer transition-all duration-300 hover:bg-white hover:!text-[#1a253c]"
+                style={{ border: '1px solid white', borderRadius: '50%', color: 'white' }}
+
               >
                 {icon}
               </a>
@@ -143,4 +146,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
