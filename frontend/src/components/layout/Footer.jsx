@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
 {/*import locationIcon from './assets/location.png';
-import phoneIcon from './assets/phone.png';
-import mailIcon from './assets/mail.png';
-import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from 'react-icons/fa';*/}
+import phoneIcon from './assets/phone-call.png';
+import mailIcon from './assets/mail.png';*/}
+import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
 
 const Footer = () => {
   const [email, setEmail] = useState('');
