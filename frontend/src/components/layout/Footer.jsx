@@ -15,7 +15,7 @@ const Footer = () => {
     setMessage('');
 
     setTimeout(() => {
-      setMessage('Merci, votre inscription a bien été prise en compte !');
+      setMessage('Merci, votre inscription a bien été prisee en compte !');
       setEmail('');
       setLoading(false);
     }, 1000);
