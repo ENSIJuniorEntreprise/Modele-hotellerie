@@ -22,7 +22,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-[#1a253c] text-white w-full px-[5%] pt-2 pb-4 box-border">
+    <footer className="bg-[#1a253c] text-white w-screen px-[5%] pt-2 pb-4 box-border">
 
       <div className="text-center mb-0">
         <h1 className="font-serif text-[45px] text-white border-b border-white inline-block pb-2 mb-3">L'Hôtel</h1>
@@ -41,13 +41,13 @@ const Footer = () => {
           <h3 className="font-serif font-bold text-[25px] mb-6 border-b border-white pb-2 w-full">Découvrir</h3>
           <ul className="list-none p-0 m-0">
             <li className="mb-4">
-              <a href="/chambres" className="font-sans font-normal !text-[#E8E2D9] text-xl no-underline hover:text-white hover:underline hover:pl-1 transition-all duration-200">Nos Chambres</a>
+              <a href="/Chambres" className="font-sans font-normal !text-[#E8E2D9] text-xl no-underline hover:text-white hover:underline hover:pl-1 transition-all duration-200">Nos Chambres</a>
             </li>
             <li className="mb-4">
-              <a href="/evenements" className="font-sans font-normal !text-[#E8E2D9] text-xl no-underline hover:text-white hover:underline hover:pl-1 transition-all duration-200">Evénements</a>
+              <a href="/Evenements" className="font-sans font-normal !text-[#E8E2D9] text-xl no-underline hover:text-white hover:underline hover:pl-1 transition-all duration-200">Evénements</a>
             </li>
             <li className="mb-4">
-              <a href="/services" className="font-sans font-normal !text-[#E8E2D9] text-xl no-underline hover:text-white hover:underline hover:pl-1 transition-all duration-200">Services</a>
+              <a href="/Services" className="font-sans font-normal !text-[#E8E2D9] text-xl no-underline hover:text-white hover:underline hover:pl-1 transition-all duration-200">Services</a>
             </li>
           </ul>
         </div>
@@ -56,10 +56,10 @@ const Footer = () => {
           <h3 className="font-serif font-bold text-[25px] mb-6 border-b border-white pb-2 w-full">Informations</h3>
           <ul className="list-none p-0 m-0">
             <li className="mb-4">
-              <a href="/contact" className="font-sans font-normal !text-[#E8E2D9] text-xl no-underline hover:text-white hover:underline hover:pl-1 transition-all duration-200">Contact</a>
+              <a href="/Contact" className="font-sans font-normal !text-[#E8E2D9] text-xl no-underline hover:text-white hover:underline hover:pl-1 transition-all duration-200">Contact</a>
             </li>
             <li className="mb-4">
-              <a href="/galerie" className="font-sans font-normal !text-[#E8E2D9] text-xl no-underline hover:text-white hover:underline hover:pl-1 transition-all duration-200">Galerie</a>
+              <a href="/Galerie" className="font-sans font-normal !text-[#E8E2D9] text-xl no-underline hover:text-white hover:underline hover:pl-1 transition-all duration-200">Galerie</a>
             </li>
           </ul>
         </div>
