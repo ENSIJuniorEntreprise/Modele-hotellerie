@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import galerie from "../assets/galerie.png";
 
+
 // ─── CAROUSEL DATA ───
 const slides = [
   { id: 1, image: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&q=80", label: "Piscine & Détente" },
