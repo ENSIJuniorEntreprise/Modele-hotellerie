@@ -204,8 +204,11 @@ document.getElementById('final-confirm').addEventListener('click', () => {
     // Regex pour nom et prénom : lettres et espaces seulement
     const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/;
 
-    // Regex pour email strict
-    const emailRegex = /^[A-Za-z][A-Za-z0-9._%+-]*@[A-Za-z]+\.[A-Za-z]+$/;
+    // Regex pour email :
+    // - avant @ : tout sauf espace et @
+    // - après @ : domaine qui commence et finit par une lettre, tirets autorisés au milieu
+    // - un seul point après @ suivi de l'extension (lettres uniquement)
+    const emailRegex = /^[^\s@]+@[A-Za-z]([A-Za-z0-9-]*[A-Za-z0-9])?\.[A-Za-z]+$/;
 
     // Regex pour téléphone : + suivi de 1 à 3 chiffres puis espace et au moins 8 chiffres
     const phoneRegex = /^\+\d{1,3}\s\d{8,}$/;
@@ -251,7 +254,7 @@ document.getElementById('final-confirm').addEventListener('click', () => {
     const nights = calculateNights(selectedArrival, selectedDeparture);
     const adults = parseInt(adultCount.textContent);
     const children = parseInt(childCount.textContent);
-    document.getElementById('recap-price').textContent = `${calculatePrice(adults, children, nights)} DT`;
+    document.getElementById('recap-price').textContent = `${calculatePrice(adults, children, nights, room)} DT`;
 
     showToast('Réservation confirmée avec succès !', 'success');
     
@@ -263,8 +266,9 @@ function calculateNights(arrival, departure){
     return Math.ceil(diffTime / (1000*60*60*24));
 }
 
-function calculatePrice(adults, children, nights){
-    const priceAdult = 300;
-    const priceChild = 150;
-    return nights * (adults * priceAdult + children * priceChild);
+function calculatePrice(adults, children, nights, room){
+    const roomPrices = {"Chambre Classique":180,"Chambre Deluxe":250,"Chambre Junior":320,"Chambre Familiale":400,"Suite Prestige":550,"Suite Executive":750};
+    const pricePerNight = roomPrices[room] || 300;
+    const childDiscount = 0.5;
+    return nights * (adults * pricePerNight + children * pricePerNight * childDiscount);
 }
