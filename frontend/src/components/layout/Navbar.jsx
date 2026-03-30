@@ -79,6 +79,10 @@ const PageTransitionOverlay = ({ phase }) => {
           from { width: 0; }
           to   { width: 48px; }
         }
+        /* Utile pour cacher la barre de scroll sur les navigateurs webkit (Chrome, Safari) */
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
       `}</style>
 
       <div style={baseStyle}>
@@ -143,7 +147,6 @@ const PageTransitionOverlay = ({ phase }) => {
 // ─────────────────────────────────────────────
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
   const [transitionPhase, setTransitionPhase] = useState('idle');
   const pendingHref = useRef(null);
 
@@ -153,17 +156,10 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    const handleResize = () => { if (window.innerWidth >= 1024) setMenuOpen(false); };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
   const handleNavClick = (e, href) => {
     e.preventDefault();
     if (transitionPhase !== 'idle') return;
 
-    setMenuOpen(false);
     pendingHref.current = href;
     setTransitionPhase('enter');
 
@@ -196,12 +192,13 @@ const Navbar = () => {
       <PageTransitionOverlay phase={transitionPhase} />
 
       <nav className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 text-white ${
-        isScrolled || menuOpen
+        isScrolled
           ? 'bg-[#1a2744]/95 shadow-lg backdrop-blur-md py-4'
-          : 'bg-transparent py-6 md:py-8'
+          : 'bg-transparent py-4 md:py-8'
       }`}>
 
-        <div className="flex items-center justify-between px-6 md:px-12">
+        <div className="flex flex-col lg:flex-row items-center justify-between px-4 md:px-12 gap-4 lg:gap-0">
+          
           {/* Logo */}
           <div
             className="text-3xl font-serif tracking-tighter cursor-pointer hover:text-[#D1A243] transition-colors duration-300"
@@ -211,14 +208,17 @@ const Navbar = () => {
             L'Hôtel
           </div>
 
-          {/* Menu Desktop */}
-          <div className="hidden lg:flex items-center space-x-10 text-[11px] font-bold tracking-[0.3em] uppercase">
+          {/* Menu Desktop et Mobile (Scrollable sur mobile) */}
+          <div 
+            className="flex items-center space-x-6 lg:space-x-10 text-[10px] lg:text-[11px] font-bold tracking-[0.1em] lg:tracking-[0.3em] uppercase overflow-x-auto w-full lg:w-auto justify-start lg:justify-center px-4 pb-2 hide-scrollbar" 
+            style={{ scrollbarWidth: 'none' }}
+          >
             {navItems.map(({ label, href }) => (
               <a
                 key={href}
                 href={href}
                 onClick={(e) => handleNavClick(e, href)}
-                className={`relative group transition-colors hover:text-[#D1A243] ${
+                className={`relative group whitespace-nowrap transition-colors hover:text-[#D1A243] ${
                   typeof window !== 'undefined' && window.location.pathname === href ? 'text-[#D1A243]' : ''
                 }`}
               >
@@ -229,51 +229,16 @@ const Navbar = () => {
           </div>
 
           {/* Bouton Reservation */}
-          <div className="hidden lg:flex items-center gap-4">
+          <div className="flex items-center">
             <button
               onClick={(e) => handleNavClick(e, '/reservation')}
-              className="border border-white/40 px-8 py-2.5 rounded-xl uppercase tracking-[0.2em] text-[10px] font-bold transition-all duration-300 hover:bg-[#D1A243] hover:text-white hover:border-[#D1A243]"
+              className="border border-white/40 px-6 py-2 lg:px-8 lg:py-2.5 rounded-xl uppercase tracking-[0.2em] text-[9px] lg:text-[10px] font-bold transition-all duration-300 hover:bg-[#D1A243] hover:text-white hover:border-[#D1A243]"
             >
               Réserver
             </button>
           </div>
 
-          {/* Burger Mobile */}
-          <button
-            className="lg:hidden flex flex-col gap-[5px] p-2 focus:outline-none"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Menu"
-          >
-            <span className={`block w-6 h-[1.5px] bg-white transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-[6.5px]' : ''}`} />
-            <span className={`block w-6 h-[1.5px] bg-white transition-all duration-300 ${menuOpen ? 'opacity-0 scale-x-0' : ''}`} />
-            <span className={`block w-6 h-[1.5px] bg-white transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-[6.5px]' : ''}`} />
-          </button>
         </div>
-
-        {/* Menu Mobile Déroulant */}
-        <div className={`lg:hidden overflow-hidden transition-all duration-500 ease-in-out ${
-          menuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
-        }`}>
-          <div className="flex flex-col items-center gap-6 py-8 border-t border-white/10 mt-4">
-            {navItems.map(({ label, href }) => (
-              <a
-                key={href}
-                href={href}
-                onClick={(e) => handleNavClick(e, href)}
-                className="text-[11px] font-bold tracking-[0.3em] uppercase text-white/80 hover:text-[#D1A243] transition-colors duration-200"
-              >
-                {label}
-              </a>
-            ))}
-            <button
-              onClick={(e) => handleNavClick(e, '/reservation')}
-              className="mt-2 border border-[#D1A243] text-[#D1A243] px-10 py-3 rounded-xl uppercase tracking-[0.2em] text-[10px] font-bold hover:bg-[#D1A243] hover:text-white transition-all duration-300"
-            >
-              Réserver
-            </button>
-          </div>
-        </div>
-
       </nav>
     </>
   );
