@@ -79,10 +79,6 @@ const PageTransitionOverlay = ({ phase }) => {
           from { width: 0; }
           to   { width: 48px; }
         }
-        /* Utile pour cacher la barre de scroll sur les navigateurs webkit (Chrome, Safari) */
-        .hide-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
       `}</style>
 
       <div style={baseStyle}>
@@ -147,6 +143,7 @@ const PageTransitionOverlay = ({ phase }) => {
 // ─────────────────────────────────────────────
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [transitionPhase, setTransitionPhase] = useState('idle');
   const pendingHref = useRef(null);
 
@@ -156,14 +153,20 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => { if (window.innerWidth >= 1024) setMenuOpen(false); };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const handleNavClick = (e, href) => {
     e.preventDefault();
     if (transitionPhase !== 'idle') return;
 
+    setMenuOpen(false);
     pendingHref.current = href;
     setTransitionPhase('enter');
 
-    // Séquence de transition
     setTimeout(() => {
       setTransitionPhase('hold');
       
@@ -171,7 +174,6 @@ const Navbar = () => {
         // NOTE: Si vous utilisez React Router, remplacez par navigate(pendingHref.current)
         window.location.href = pendingHref.current;
         
-        // Ce code ne s'exécutera qu'au rechargement si window.location est utilisé
         setTransitionPhase('exit');
         setTimeout(() => setTransitionPhase('idle'), 750);
       }, 900);
@@ -192,53 +194,90 @@ const Navbar = () => {
       <PageTransitionOverlay phase={transitionPhase} />
 
       <nav className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 text-white ${
-        isScrolled
+        isScrolled || menuOpen
           ? 'bg-[#1a2744]/95 shadow-lg backdrop-blur-md py-4'
-          : 'bg-transparent py-4 md:py-8'
+          : 'bg-transparent py-6 md:py-8'
       }`}>
 
-        <div className="flex flex-col lg:flex-row items-center justify-between px-4 md:px-12 gap-4 lg:gap-0">
-          
+        <div className="flex items-center justify-between px-6 md:px-12">
           {/* Logo */}
           <div
-            className="text-3xl font-serif tracking-tighter cursor-pointer hover:text-[#D1A243] transition-colors duration-300"
+            className="text-3xl font-serif tracking-tighter cursor-pointer hover:text-[#D1A243] transition-colors duration-300 z-50"
             style={{ fontFamily: "'Playfair Display', serif" }}
             onClick={(e) => handleNavClick(e, '/')}
           >
             L'Hôtel
           </div>
 
-          {/* Menu Desktop et Mobile (Scrollable sur mobile) */}
-          <div 
-            className="flex items-center space-x-6 lg:space-x-10 text-[10px] lg:text-[11px] font-bold tracking-[0.1em] lg:tracking-[0.3em] uppercase overflow-x-auto w-full lg:w-auto justify-start lg:justify-center px-4 pb-2 hide-scrollbar" 
-            style={{ scrollbarWidth: 'none' }}
-          >
+          {/* Menu Desktop (Caché sur mobile) */}
+          <div className="hidden lg:flex items-center space-x-10 text-[11px] font-bold tracking-[0.3em] uppercase">
             {navItems.map(({ label, href }) => (
               <a
                 key={href}
                 href={href}
                 onClick={(e) => handleNavClick(e, href)}
-                className={`relative group whitespace-nowrap transition-colors hover:text-[#D1A243] ${
+                className={`relative group transition-colors hover:text-[#D1A243] pb-1 ${
                   typeof window !== 'undefined' && window.location.pathname === href ? 'text-[#D1A243]' : ''
                 }`}
               >
                 {label}
-                <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-[1px] bg-[#D1A243] transition-all duration-300 group-hover:w-full" />
+                <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-[#D1A243] transition-all duration-300 group-hover:w-full" />
               </a>
             ))}
           </div>
 
-          {/* Bouton Reservation */}
-          <div className="flex items-center">
+          {/* Bouton Reservation Desktop (Caché sur mobile) */}
+          <div className="hidden lg:flex items-center gap-4">
             <button
               onClick={(e) => handleNavClick(e, '/reservation')}
-              className="border border-white/40 px-6 py-2 lg:px-8 lg:py-2.5 rounded-xl uppercase tracking-[0.2em] text-[9px] lg:text-[10px] font-bold transition-all duration-300 hover:bg-[#D1A243] hover:text-white hover:border-[#D1A243]"
+              className="border border-white/40 px-8 py-2.5 rounded-xl uppercase tracking-[0.2em] text-[10px] font-bold transition-all duration-300 hover:bg-[#D1A243] hover:text-white hover:border-[#D1A243]"
             >
               Réserver
             </button>
           </div>
 
+          {/* Bouton Hamburger Mobile (Visible uniquement sur mobile) */}
+          <button
+            className="lg:hidden flex flex-col gap-[5px] p-2 focus:outline-none z-50 relative"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Menu"
+          >
+            <span className={`block w-6 h-[1.5px] bg-white transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-[6.5px]' : ''}`} />
+            <span className={`block w-6 h-[1.5px] bg-white transition-all duration-300 ${menuOpen ? 'opacity-0 scale-x-0' : ''}`} />
+            <span className={`block w-6 h-[1.5px] bg-white transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-[6.5px]' : ''}`} />
+          </button>
         </div>
+
+        {/* Menu Mobile Déroulant */}
+        <div className={`lg:hidden overflow-hidden transition-all duration-500 ease-in-out absolute top-full left-0 w-full bg-[#1a2744]/95 backdrop-blur-md ${
+          menuOpen ? 'max-h-[600px] opacity-100 border-b border-white/10' : 'max-h-0 opacity-0'
+        }`}>
+          <div className="flex flex-col items-center gap-6 py-10">
+            {navItems.map(({ label, href }) => (
+              <a
+                key={href}
+                href={href}
+                onClick={(e) => handleNavClick(e, href)}
+                className={`relative group pb-1 text-[13px] font-bold tracking-[0.3em] uppercase transition-colors duration-300 ${
+                  typeof window !== 'undefined' && window.location.pathname === href 
+                    ? 'text-[#D1A243]' 
+                    : 'text-white/90 hover:text-[#D1A243]'
+                }`}
+              >
+                {label}
+                {/* Effet de ligne au survol pour mobile */}
+                <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-[#D1A243] transition-all duration-300 group-hover:w-full" />
+              </a>
+            ))}
+            <button
+              onClick={(e) => handleNavClick(e, '/reservation')}
+              className="mt-6 border border-[#D1A243] text-[#D1A243] px-12 py-3.5 rounded-xl uppercase tracking-[0.2em] text-[11px] font-bold hover:bg-[#D1A243] hover:text-white transition-all duration-300"
+            >
+              Réserver
+            </button>
+          </div>
+        </div>
+
       </nav>
     </>
   );

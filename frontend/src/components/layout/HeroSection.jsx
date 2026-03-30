@@ -68,12 +68,6 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10">
-        <span className="text-white/40 text-[9px] tracking-[0.3em] uppercase font-sans">Scroll</span>
-        <div className="w-px h-8 bg-[#D1A243]/60 animate-pulse" />
-      </div>
-
       {/* Styles d'animation */}
       <style dangerouslySetInnerHTML={{
         __html: `
