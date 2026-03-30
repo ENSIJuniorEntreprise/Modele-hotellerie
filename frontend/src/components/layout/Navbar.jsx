@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-
+// ─────────────────────────────────────────────
+// Overlay de transition de page
+// ─────────────────────────────────────────────
 const PageTransitionOverlay = ({ phase }) => {
-  
   if (phase === 'idle') return null;
 
   const baseStyle = {
@@ -84,7 +85,6 @@ const PageTransitionOverlay = ({ phase }) => {
         <div style={curtainStyle}>
           <div style={shimmerStyle} />
 
-          {/* Logo centré pendant la transition */}
           <div style={logoStyle}>
             <div style={{
               fontSize: '13px',
@@ -115,7 +115,6 @@ const PageTransitionOverlay = ({ phase }) => {
             }} />
           </div>
 
-          {/* Coins décoratifs */}
           {[
             { top: 32, left: 32 },
             { top: 32, right: 32 },
@@ -127,10 +126,10 @@ const PageTransitionOverlay = ({ phase }) => {
               ...pos,
               width: 28,
               height: 28,
-              borderTop: i < 2 ? '1px solid rgba(209,162,67,0.25)' : 'none',
-              borderBottom: i >= 2 ? '1px solid rgba(209,162,67,0.25)' : 'none',
-              borderLeft: i % 2 === 0 ? '1px solid rgba(209,162,67,0.25)' : 'none',
-              borderRight: i % 2 === 1 ? '1px solid rgba(209,162,67,0.25)' : 'none',
+              borderTop:    i < 2      ? '1px solid rgba(209,162,67,0.25)' : 'none',
+              borderBottom: i >= 2     ? '1px solid rgba(209,162,67,0.25)' : 'none',
+              borderLeft:   i % 2 === 0 ? '1px solid rgba(209,162,67,0.25)' : 'none',
+              borderRight:  i % 2 === 1 ? '1px solid rgba(209,162,67,0.25)' : 'none',
             }} />
           ))}
         </div>
@@ -139,10 +138,13 @@ const PageTransitionOverlay = ({ phase }) => {
   );
 };
 
-
+// ─────────────────────────────────────────────
+// Navbar principale
+// ─────────────────────────────────────────────
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [transitionPhase, setTransitionPhase] = useState('idle'); // idle | enter | hold | exit
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [transitionPhase, setTransitionPhase] = useState('idle');
   const pendingHref = useRef(null);
 
   useEffect(() => {
@@ -151,73 +153,127 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => { if (window.innerWidth >= 1024) setMenuOpen(false); };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const handleNavClick = (e, href) => {
     e.preventDefault();
     if (transitionPhase !== 'idle') return;
 
+    setMenuOpen(false);
     pendingHref.current = href;
     setTransitionPhase('enter');
 
-    
+    // Séquence de transition
     setTimeout(() => {
       setTransitionPhase('hold');
-
       
       setTimeout(() => {
-
-        setTransitionPhase('exit');
-
+        // NOTE: Si vous utilisez React Router, remplacez par navigate(pendingHref.current)
+        window.location.href = pendingHref.current;
         
-        setTimeout(() => {
-          setTransitionPhase('idle');
-        }, 750);
+        // Ce code ne s'exécutera qu'au rechargement si window.location est utilisé
+        setTransitionPhase('exit');
+        setTimeout(() => setTransitionPhase('idle'), 750);
       }, 900);
     }, 700);
   };
 
-  const navItems = ['Accueil', 'Chambres', 'Services', 'Événements', 'Galerie', 'Contact'];
+  const navItems = [
+    { label: 'Accueil',    href: '/' },
+    { label: 'Chambres',   href: '/chambres' },
+    { label: 'Services',   href: '/services' },
+    { label: 'Événements', href: '/evenements' },
+    { label: 'Galerie',    href: '/galerie' },
+    { label: 'Contact',    href: '/contact' },
+  ];
 
   return (
     <>
       <PageTransitionOverlay phase={transitionPhase} />
 
-      <nav className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 flex items-center justify-between px-6 md:px-12 text-white ${
-        isScrolled ? 'bg-[#1a2744]/95 shadow-lg backdrop-blur-md py-4' : 'bg-transparent py-8'
+      <nav className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 text-white ${
+        isScrolled || menuOpen
+          ? 'bg-[#1a2744]/95 shadow-lg backdrop-blur-md py-4'
+          : 'bg-transparent py-6 md:py-8'
       }`}>
-        {/* Logo */}
-        <div
-          className="text-3xl font-serif tracking-tighter cursor-pointer hover:text-[#D1A243] transition-colors duration-300"
-          style={{ fontFamily: "'Playfair Display', serif" }}
-          onClick={(e) => handleNavClick(e, '/accueil')}
-        >
-          L'Hôtel
-        </div>
 
-        {/* Menu */}
-        <div className="hidden lg:flex items-center space-x-10 text-[11px] font-bold tracking-[0.3em] uppercase">
-          {navItems.map((item) => {
-            const href = item === 'Événements' ? '/evenements' : `/${item.toLowerCase()}`;
-            return (
+        <div className="flex items-center justify-between px-6 md:px-12">
+          {/* Logo */}
+          <div
+            className="text-3xl font-serif tracking-tighter cursor-pointer hover:text-[#D1A243] transition-colors duration-300"
+            style={{ fontFamily: "'Playfair Display', serif" }}
+            onClick={(e) => handleNavClick(e, '/')}
+          >
+            L'Hôtel
+          </div>
+
+          {/* Menu Desktop */}
+          <div className="hidden lg:flex items-center space-x-10 text-[11px] font-bold tracking-[0.3em] uppercase">
+            {navItems.map(({ label, href }) => (
               <a
-                key={item}
+                key={href}
                 href={href}
                 onClick={(e) => handleNavClick(e, href)}
-                className="relative group transition-colors hover:text-[#D1A243]"
+                className={`relative group transition-colors hover:text-[#D1A243] ${
+                  typeof window !== 'undefined' && window.location.pathname === href ? 'text-[#D1A243]' : ''
+                }`}
               >
-                {item}
+                {label}
                 <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-[1px] bg-[#D1A243] transition-all duration-300 group-hover:w-full" />
               </a>
-            );
-          })}
+            ))}
+          </div>
+
+          {/* Bouton Reservation */}
+          <div className="hidden lg:flex items-center gap-4">
+            <button
+              onClick={(e) => handleNavClick(e, '/reservation')}
+              className="border border-white/40 px-8 py-2.5 rounded-xl uppercase tracking-[0.2em] text-[10px] font-bold transition-all duration-300 hover:bg-[#D1A243] hover:text-white hover:border-[#D1A243]"
+            >
+              Réserver
+            </button>
+          </div>
+
+          {/* Burger Mobile */}
+          <button
+            className="lg:hidden flex flex-col gap-[5px] p-2 focus:outline-none"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Menu"
+          >
+            <span className={`block w-6 h-[1.5px] bg-white transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-[6.5px]' : ''}`} />
+            <span className={`block w-6 h-[1.5px] bg-white transition-all duration-300 ${menuOpen ? 'opacity-0 scale-x-0' : ''}`} />
+            <span className={`block w-6 h-[1.5px] bg-white transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-[6.5px]' : ''}`} />
+          </button>
         </div>
 
-        {/* Bouton Réserver */}
-        <button
-          onClick={(e) => handleNavClick(e, '/reservation')}
-          className="border border-white/40 px-8 py-2.5 rounded-xl uppercase tracking-[0.2em] text-[10px] font-bold transition-all duration-300 hover:bg-[#D1A243] hover:text-white hover:border-[#D1A243]"
-        >
-          Réserver
-        </button>
+        {/* Menu Mobile Déroulant */}
+        <div className={`lg:hidden overflow-hidden transition-all duration-500 ease-in-out ${
+          menuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+        }`}>
+          <div className="flex flex-col items-center gap-6 py-8 border-t border-white/10 mt-4">
+            {navItems.map(({ label, href }) => (
+              <a
+                key={href}
+                href={href}
+                onClick={(e) => handleNavClick(e, href)}
+                className="text-[11px] font-bold tracking-[0.3em] uppercase text-white/80 hover:text-[#D1A243] transition-colors duration-200"
+              >
+                {label}
+              </a>
+            ))}
+            <button
+              onClick={(e) => handleNavClick(e, '/reservation')}
+              className="mt-2 border border-[#D1A243] text-[#D1A243] px-10 py-3 rounded-xl uppercase tracking-[0.2em] text-[10px] font-bold hover:bg-[#D1A243] hover:text-white transition-all duration-300"
+            >
+              Réserver
+            </button>
+          </div>
+        </div>
+
       </nav>
     </>
   );
