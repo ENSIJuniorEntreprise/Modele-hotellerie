@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
 import locationIcon from '../../assets/location.png';
 import phoneIcon from '../../assets/phone-call.png';
@@ -13,61 +13,29 @@ const Footer = () => {
     e.preventDefault();
     setLoading(true);
     setMessage('');
-
     setTimeout(() => {
-      setMessage('Merci, votre inscription a bien été prisee en compte !');
+      setMessage('Merci, votre inscription a bien été prise en compte !');
       setEmail('');
       setLoading(false);
     }, 1000);
   };
 
   return (
-    <footer className="bg-[#1a253c] text-white w-screen px-[5%] pt-2 pb-4 box-border">
+    <footer className="bg-[#1a253c] text-white w-full box-border overflow-hidden">
 
-      <div className="text-center mb-0">
-        <h1 className="font-serif text-[45px] text-white border-b border-white inline-block pb-2 mb-3">L'Hôtel</h1>
-        <p className="font-sans font-normal text-[#E8E2D9] text-[20px] text-xl mt-0">"L'excellence hôtelière où confort, prestige et raffinement se rencontrent."</p>
-      </div>
+      {/* ── VERSION MOBILE (inchangée) ── */}
+      <div className="flex flex-col items-center px-6 py-8 gap-6 sm:hidden">
 
-      <div className="grid grid-cols-4 gap-5 w-full max-w-[1300px] mx-auto my-16 text-left">
-        <div className="flex flex-col items-start">
-          <h3 className="font-serif font-bold text-[25px] mb-6 border-b border-white pb-2 w-full">Réception</h3>
-          <p className="font-sans font-normal text-[#E8E2D9] text-xl mb-4">24h/24 , 7j/7</p>
-          <p className="font-sans font-normal text-[#E8E2D9] text-xl mb-4">Check-in: 15h00</p>
-          <p className="font-sans font-normal text-[#E8E2D9] text-xl mb-4">Check-out: 11h00</p>
-        </div>
+        <h1 className="font-serif text-3xl text-white border-b border-white pb-2">
+          L'Hôtel
+        </h1>
 
-        <div className="flex flex-col items-start">
-          <h3 className="font-serif font-bold text-[25px] mb-6 border-b border-white pb-2 w-full">Découvrir</h3>
-          <ul className="list-none p-0 m-0">
-            <li className="mb-4">
-              <a href="/Chambres" className="font-sans font-normal !text-[#E8E2D9] text-xl no-underline hover:text-white hover:underline hover:pl-1 transition-all duration-200">Nos Chambres</a>
-            </li>
-            <li className="mb-4">
-              <a href="/Evenements" className="font-sans font-normal !text-[#E8E2D9] text-xl no-underline hover:text-white hover:underline hover:pl-1 transition-all duration-200">Evénements</a>
-            </li>
-            <li className="mb-4">
-              <a href="/Services" className="font-sans font-normal !text-[#E8E2D9] text-xl no-underline hover:text-white hover:underline hover:pl-1 transition-all duration-200">Services</a>
-            </li>
-          </ul>
-        </div>
+        <div className="w-full">
+          <p className="font-sans text-[#E8E2D9] text-sm text-center mb-3">
+            Recevez nos offres exclusives
+          </p>
 
-        <div className="flex flex-col items-start">
-          <h3 className="font-serif font-bold text-[25px] mb-6 border-b border-white pb-2 w-full">Informations</h3>
-          <ul className="list-none p-0 m-0">
-            <li className="mb-4">
-              <a href="/Contact" className="font-sans font-normal !text-[#E8E2D9] text-xl no-underline hover:text-white hover:underline hover:pl-1 transition-all duration-200">Contact</a>
-            </li>
-            <li className="mb-4">
-              <a href="/Galerie" className="font-sans font-normal !text-[#E8E2D9] text-xl no-underline hover:text-white hover:underline hover:pl-1 transition-all duration-200">Galerie</a>
-            </li>
-          </ul>
-        </div>
-
-        <div className="flex flex-col items-start">
-          <h3 className="font-serif font-bold text-[25px] mb-6 border-b border-white pb-2 w-full">Rester en contact</h3>
-          <p className="font-sans font-normal text-[#E8E2D9] text-xl mb-4">Laissez-nous votre Email pour recevoir nos offres</p>
-          <form onSubmit={handleSubscribe} className="w-full">
+          <form onSubmit={handleSubscribe} className="w-full flex flex-col gap-2">
             <input
               type="email"
               placeholder="Votre adresse mail"
@@ -75,72 +43,182 @@ const Footer = () => {
               onChange={(e) => setEmail(e.target.value)}
               required
               disabled={loading}
-              className="w-full p-4 bg-transparent border border-white text-white font-sans text-xl mt-2 placeholder-[#E8E2D9] box-border disabled:opacity-50 outline-none"
+              className="w-full px-3 py-2.5 bg-transparent border border-white text-white text-sm placeholder-[#E8E2D9] outline-none disabled:opacity-50"
             />
+
             <button
               type="submit"
               disabled={loading}
-              style={{ backgroundColor: '#E8E2D9', color: '#1a253c', borderRadius: '0', padding:'20px 16px' ,fontSize:'18px' }}
-
-              className="w-full py-5 border-none font-medium text-2xl mt-3 cursor-pointer text-left disabled:opacity-60 transition-colors duration-200 px-4">
-
+              style={{ backgroundColor: '#E8E2D9', color: '#1a253c', borderRadius: '0' }}
+              className="w-full py-2.5 text-sm font-medium cursor-pointer disabled:opacity-60"
+            >
               {loading ? 'Envoi...' : 'Confirmer'}
             </button>
           </form>
+
           {message && (
-            <p className="mt-3 text-sm font-sans text-green-400">
+            <p className="mt-2 text-xs text-green-400 text-center">
               {message}
             </p>
           )}
         </div>
-      </div>
 
-      <div className="border-t border-white/10 pt-5 flex flex-row justify-between items-center flex-nowrap gap-5">
+        <div className="flex items-center gap-3">
+          <span className="font-serif text-sm text-white">Suivez-nous</span>
 
-        <div className="flex flex-row items-center flex-nowrap gap-4 shrink min-w-0">
-          <span className="flex items-center whitespace-nowrap font-sans font-medium text-[#E8E2D9] text-lg">
-            <img src={locationIcon} alt="Localisation" className="w-[22px] h-auto mr-2 shrink-0" />
+          {[
+            { icon: <FaFacebookF />, href: '#' },
+            { icon: <FaTwitter />, href: '#' },
+            { icon: <FaLinkedinIn />, href: '#' },
+            { icon: <FaInstagram />, href: '#' },
+          ].map(({ icon, href }, i) => (
+            <a
+              key={i}
+              href={href}
+              className="w-7 h-7 flex items-center justify-center border border-white rounded-full text-white hover:bg-white hover:text-[#1a253c]"
+            >
+              {icon}
+            </a>
+          ))}
+        </div>
+
+        <div className="flex flex-col items-center gap-1.5 border-t border-white/10 pt-4 w-full">
+          <span className="flex items-center gap-1.5 text-[#E8E2D9] text-xs">
+            <img src={locationIcon} className="w-3.5" />
             258 Elisabeth Ava, CA
           </span>
-          <span className="text-white/30 text-xl shrink-0">|</span>
-          <span className="flex items-center whitespace-nowrap font-sans font-medium text-[#E8E2D9] text-lg">
-            <img src={phoneIcon} alt="Téléphone" className="w-[22px] h-auto mr-2 shrink-0" />
+
+          <span className="flex items-center gap-1.5 text-[#E8E2D9] text-xs">
+            <img src={phoneIcon} className="w-3.5" />
             +569 2316 2156
           </span>
-          <span className="text-white/30 text-xl shrink-0">|</span>
-          <span className="flex items-center whitespace-nowrap font-sans font-medium text-[#E8E2D9] text-lg">
-            <img src={mailIcon} alt="Mail" className="w-[22px] h-auto mr-2 shrink-0" />
+
+          <span className="flex items-center gap-1.5 text-[#E8E2D9] text-xs">
+            <img src={mailIcon} className="w-3.5" />
             hotel@gmail.com
           </span>
         </div>
+      </div>
 
-        <div className="flex flex-row items-center gap-3 shrink-0">
-          <span className="font-serif font-bold text-[22px] text-white whitespace-nowrap">
-            Suivez-nous
-          </span>
-          <div className="flex flex-row items-center gap-2">
-            {[
-              { icon: <FaFacebookF />, href: 'https://facebook.com' },
-              { icon: <FaTwitter />,   href: 'https://twitter.com' },
-              { icon: <FaLinkedinIn />, href: 'https://linkedin.com' },
-              { icon: <FaInstagram />, href: 'https://instagram.com' },
-            ].map(({ icon, href }, i) => (
-              <a
-                key={i}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="!border-white rounded-full w-8 h-8 flex items-center justify-center !text-white cursor-pointer transition-all duration-300 hover:bg-white hover:!text-[#1a253c]"
-                style={{ border: '1px solid white', borderRadius: '50%', color: 'white' }}
+      {/* ── VERSION DESKTOP RESPONSIVE FIX ── */}
+      <div className="hidden sm:block px-[5%] pt-2 pb-4">
 
-              >
-                {icon}
-              </a>
-            ))}
+        <div className="text-center mb-0">
+          <h1 className="font-serif text-[45px] border-b border-white inline-block pb-2 mb-3">
+            L'Hôtel
+          </h1>
+
+          <p className="text-[#E8E2D9] text-base md:text-xl px-2">
+            "L'excellence hôtelière où confort, prestige et raffinement se rencontrent."
+          </p>
+        </div>
+
+        {/* GRID RESPONSIVE */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-[1300px] mx-auto my-10">
+
+          <div>
+            <h3 className="font-serif text-[22px] md:text-[25px] mb-6 border-b border-white pb-2">
+              Réception
+            </h3>
+            <p className="text-[#E8E2D9] text-base md:text-xl mb-3">24h/24 , 7j/7</p>
+            <p className="text-[#E8E2D9] text-base md:text-xl mb-3">Check-in: 15h00</p>
+            <p className="text-[#E8E2D9] text-base md:text-xl mb-3">Check-out: 11h00</p>
           </div>
+
+          <div>
+            <h3 className="font-serif text-[22px] md:text-[25px] mb-6 border-b border-white pb-2">
+              Découvrir
+            </h3>
+            <ul>
+              <li className="mb-3"><a href="/Chambres" className="text-[#E8E2D9] text-base md:text-xl hover:text-white">Nos Chambres</a></li>
+              <li className="mb-3"><a href="/Evenements" className="text-[#E8E2D9] text-base md:text-xl hover:text-white">Evénements</a></li>
+              <li className="mb-3"><a href="/Services" className="text-[#E8E2D9] text-base md:text-xl hover:text-white">Services</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-serif text-[22px] md:text-[25px] mb-6 border-b border-white pb-2">
+              Informations
+            </h3>
+            <ul>
+              <li className="mb-3"><a href="/Contact" className="text-[#E8E2D9] text-base md:text-xl hover:text-white">Contact</a></li>
+              <li className="mb-3"><a href="/Galerie" className="text-[#E8E2D9] text-base md:text-xl hover:text-white">Galerie</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-serif text-[22px] md:text-[25px] mb-6 border-b border-white pb-2">
+              Rester en contact
+            </h3>
+
+            <p className="text-[#E8E2D9] text-base md:text-xl mb-3">
+              Laissez-nous votre Email pour recevoir nos offres
+            </p>
+
+            <form onSubmit={handleSubscribe}>
+              <input
+                type="email"
+                placeholder="Votre adresse mail"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full p-3 md:p-4 border border-white text-white text-base md:text-xl mt-2"
+              />
+
+              <button className="w-full py-4 mt-3 bg-[#E8E2D9] text-[#1a253c] text-lg md:text-2xl">
+                {loading ? 'Envoi...' : 'Confirmer'}
+              </button>
+            </form>
+
+            {message && <p className="mt-3 text-sm text-green-400">{message}</p>}
+          </div>
+
+        </div>
+
+        {/* BOTTOM */}
+        <div className="border-t border-white/10 pt-5 flex flex-col lg:flex-row justify-between items-center gap-4">
+
+          <div className="flex flex-wrap justify-center lg:justify-start gap-3 text-[#E8E2D9] text-sm md:text-lg">
+
+            <span className="flex items-center gap-2">
+              <img src={locationIcon} className="w-[18px]" />
+              258 Elisabeth Ava, CA
+            </span>
+
+            <span className="hidden lg:block text-white/30">|</span>
+
+            <span className="flex items-center gap-2">
+              <img src={phoneIcon} className="w-[18px]" />
+              +569 2316 2156
+            </span>
+
+            <span className="hidden lg:block text-white/30">|</span>
+
+            <span className="flex items-center gap-2">
+              <img src={mailIcon} className="w-[18px]" />
+              hotel@gmail.com
+            </span>
+
+          </div>
+
+          <div className="flex items-center gap-3">
+            <span className="font-serif text-lg md:text-[22px]">Suivez-nous</span>
+
+            <div className="flex gap-2">
+              {[FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram].map((Icon, i) => (
+                <div
+                  key={i}
+                  className="w-8 h-8 flex items-center justify-center border border-white rounded-full hover:bg-white hover:text-[#1a253c]"
+                >
+                  <Icon />
+                </div>
+              ))}
+            </div>
+          </div>
+
         </div>
 
       </div>
+
     </footer>
   );
 };
