@@ -157,16 +157,21 @@ const Footer = () => {
 
             <form onSubmit={handleSubscribe}>
               <input
-                type="email"
-                placeholder="Votre adresse mail"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full p-3 md:p-4 border border-white text-white text-base md:text-xl mt-2"
-              />
+  type="email"
+  placeholder="Votre adresse mail"
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+  style={{ backgroundColor: 'transparent', border: '1px solid white', borderRadius: '0', outline: 'none', boxSizing: 'border-box' }}
+  className="w-full p-3 md:p-4 text-white text-base md:text-xl mt-2"
+/>
+<button
+  type="submit"
+  style={{ backgroundColor: '#E8E2D9', color: '#1a253c', borderRadius: '0', border: '1px solid #E8E2D9', boxSizing: 'border-box' }}
+  className="w-full py-4 mt-3 text-lg md:text-2xl font-medium"
+>
+  {loading ? 'Envoi...' : 'Confirmer'}
+</button>
 
-              <button className="w-full py-4 mt-3 bg-[#E8E2D9] text-[#1a253c] text-lg md:text-2xl">
-                {loading ? 'Envoi...' : 'Confirmer'}
-              </button>
             </form>
 
             {message && <p className="mt-3 text-sm text-green-400">{message}</p>}
