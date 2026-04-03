@@ -49,6 +49,11 @@ input, select {
   outline: none;
 }
 
+input:disabled,
+select:disabled {
+  cursor: not-allowed;
+}
+
 /* ------------------- Hero ------------------- */
 html {
   margin: 0;
@@ -152,6 +157,7 @@ html {
   gap: 15px;
   flex: 1;
   min-width: 150px;
+  cursor: pointer;
 }
 
 .booking-icon img {
@@ -369,16 +375,17 @@ select.form-input {
 
 /* ------------------- Calendar ------------------- */
 #calendar-container {
-  position: absolute;
+  position: fixed;
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-  display: none;
-  z-index: 999;
+  display: block;
+  z-index: 9999;
 }
 
 .calendar {
-  width: 280px;
+  width: 300px;
+  padding: 10px;
 }
 
 .calendar-header {
@@ -397,29 +404,40 @@ select.form-input {
   cursor: pointer;
 }
 
-.calendar-weekdays, .calendar-days {
+.calendar-weekdays,
+.calendar-days {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   text-align: center;
-  gap: 5px;
+  gap: 4px;
+  padding: 0 8px;
 }
 
 .calendar-weekdays span {
   font-weight: 600;
+  font-size: 12px;
+  padding: 4px 0;
 }
 
 .calendar-days button {
-  padding: 8px;
+  padding: 8px 4px;
   border: none;
   background: #f0f0f0;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 13px;
   transition: background 0.2s;
+  width: 100%;
 }
 
 .calendar-days button:hover:not(:disabled) {
   background: #d1a243;
   color: #fff;
+}
+
+.calendar-days button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
 }
 
 .calendar-days button.selected {
@@ -437,42 +455,18 @@ select.form-input {
   font-family: 'Arial', sans-serif;
 }
 
-.traveler-display {
-  cursor: pointer;
-  padding: 10px 15px;
-  border: 1px solid #d9d9d9;
-  border-radius: 12px;
-  background: #fff;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  transition: box-shadow 0.3s;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.traveler-display:hover {
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-.traveler-display::after {
-  content: '▾';
-  font-size: 12px;
-  color: #999;
-  transition: transform 0.3s;
-}
-
 .traveler-box {
   position: absolute;
-  top: 55px;
+  top: calc(100% + 8px);
   left: 0;
-  width: 100%;
+  min-width: 260px;
   background: #fff;
   border-radius: 16px;
-  padding: 15px;
+  padding: 16px 20px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.15);
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-20px);
+  transform: translateY(-10px);
   transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
   z-index: 999;
 }
@@ -487,24 +481,37 @@ select.form-input {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   font-size: 14px;
   color: #333;
+  gap: 16px;
 }
 
 .traveler-row:last-child {
   margin-bottom: 0;
 }
 
+.traveler-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .traveler-controls button {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   border: 1px solid #d9d9d9;
   background: #fff;
   border-radius: 50%;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: all 0.2s;
+  padding: 0;
+  line-height: 1;
+  flex-shrink: 0;
 }
 
 .traveler-controls button:hover {
@@ -513,10 +520,13 @@ select.form-input {
 }
 
 .traveler-controls span {
-  margin: 0 10px;
-  min-width: 20px;
+  min-width: 24px;
   text-align: center;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 500;
 }
 
 /* ------------------- Toast ------------------- */
@@ -536,17 +546,6 @@ select.form-input {
   color: white;
   font-size: 14px;
   animation: slideIn .3s;
-}
-
-/* Toast vide = invisible et sans espace */
-div#toast.toast:empty {
-  display: none;
-}
-
-/* Masquer le div traveler-display dupliqué hors du booking bar */
-body > div#traveler-display,
-body > div#traveler-box {
-  display: none !important;
 }
 
 .toast-success { background: #2e7d32; }
@@ -594,7 +593,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-size: 20px;
   }
 
-  /* Form en colonne */
   .form-container {
     flex-direction: column;
     gap: 40px;
@@ -680,9 +678,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     flex-shrink: 0;
     white-space: nowrap;
   }
+
+  .traveler-box {
+    min-width: 220px;
+  }
 }
-
-
 
 /* --- Mobile (≤768px) --- */
 @media (max-width: 768px) {
@@ -711,7 +711,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-size: 16px;
   }
 
-  /* Nom/Prénom en colonne sur mobile */
   .row-inputs {
     flex-direction: column;
     gap: 16px;
@@ -755,6 +754,28 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   .toast {
     font-size: 13px;
   }
+
+  /* Calendrier pleine largeur sur mobile */
+  #calendar-container {
+    left: 10px !important;
+    right: 10px !important;
+    width: auto !important;
+  }
+
+  .calendar {
+    width: 100%;
+  }
+
+  /* Traveler box centrée sur mobile */
+  .traveler-box {
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+    min-width: 240px;
+  }
+
+  .traveler-box.active {
+    transform: translateX(-50%) translateY(0);
+  }
 }
 
 /* --- Petit mobile (≤480px) --- */
@@ -782,15 +803,27 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   .summary-grid tr {
     padding: 8px 0;
   }
+
+  .traveler-controls button {
+    width: 28px;
+    height: 28px;
+    font-size: 11px;
+  }
+
+  .traveler-controls span {
+    font-size: 13px;
+    min-width: 20px;
+  }
 }
 
-/* --- Booking bar colonne centrée ≤495px (placé en dernier pour priorité maximale) --- */
+/* --- Booking bar colonne centrée ≤495px --- */
 @media (max-width: 495px) {
   #section-booking-bar {
     margin-top: -72px !important;
     padding: 0 20px !important;
     justify-content: center !important;
   }
+
   .booking-bar-container {
     flex-direction: column !important;
     flex-wrap: nowrap !important;
@@ -804,6 +837,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     gap: 0 !important;
     margin: 0 auto !important;
   }
+
   .booking-item {
     width: 100% !important;
     flex: none !important;
@@ -811,16 +845,20 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     padding: 12px 0 !important;
     justify-content: flex-start !important;
   }
+
   .booking-icon { flex-shrink: 0 !important; }
   .booking-details { flex: 1 !important; }
   .booking-label { font-size: 11px !important; letter-spacing: 1px !important; }
   .booking-value { font-size: 14px !important; }
+
   .divider {
     width: 100% !important;
     height: 1px !important;
     margin: 0 !important;
   }
+
   .dropdown-arrow { margin-left: auto !important; margin-right: 0 !important; }
+
   .booking-btn {
     width: 100% !important;
     height: 50px !important;
@@ -828,5 +866,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin-top: 16px !important;
     justify-content: center !important;
     padding: 0 !important;
+  }
+
+  .traveler-box {
+    left: 0 !important;
+    transform: translateY(-10px) !important;
+    min-width: 100% !important;
+  }
+
+  .traveler-box.active {
+    transform: translateY(0) !important;
   }
 }

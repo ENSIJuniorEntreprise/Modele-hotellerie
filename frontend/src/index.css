@@ -24,10 +24,9 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+  width: 100%;
   min-height: 100vh;
+  cursor: default;
 }
 
 h1 {
@@ -65,4 +64,16 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+* {
+  cursor: pointer;
+}
+
+input, textarea, select {
+  cursor: text;
+}
+
+input:disabled, textarea:disabled, select:disabled {
+  cursor: not-allowed;
 }
