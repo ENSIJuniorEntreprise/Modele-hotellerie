@@ -19,8 +19,17 @@ const routes = {
   '/reservation': Reservation,
 }
 
+// Pages rendered WITHOUT shared Navbar / Footer
+const standalonePages = ['/chambres', '/evenemets']
+
 function App() {
-  const CurrentPage = routes[window.location.pathname.toLowerCase()] || Accueil
+  const path = window.location.pathname.toLowerCase()
+  const CurrentPage = routes[path] || Accueil
+  const isStandalone = standalonePages.includes(path)
+
+  if (isStandalone) {
+    return <CurrentPage />
+  }
 
   return (
     <div className="min-h-screen flex flex-col">
